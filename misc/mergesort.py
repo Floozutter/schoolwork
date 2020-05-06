@@ -15,10 +15,10 @@ C = TypeVar("C", bound=Comparable)
 
 def merge(a: List[C], b: List[C]) -> List[C]:
     """Merges two lists that are sorted in ascending order."""
-    if not a:       return b
-    if not b:       return a
-    if a[0] < b[0]: return a[0:1] + merge(a[1:], b)
-    else:           return b[0:1] + merge(a, b[1:])
+    if   not a:       return b
+    elif not b:       return a
+    elif a[0] < b[0]: return a[0:1] + merge(a[1:], b)
+    else:             return b[0:1] + merge(a, b[1:])
 
 def mergesort(lst: List[C]) -> List[C]:
     """Returns the list sorted using mergesort."""
