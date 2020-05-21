@@ -1,9 +1,10 @@
-# Byte-compiled / optimized / DLL stuff
+# Python stuff
+## Byte-compiled / optimized / DLL stuff
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Mypy stuff
+## Mypy stuff
 .mypy_cache/
 .dmypy.json
 dmypy.json
