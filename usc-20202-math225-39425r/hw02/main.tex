@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{tikz}
+\usepackage{subfiles}
+
+\title{\vspace{-4\baselineskip}MATH 225 - Homework \#2}
+\author{D. Choi}
+\date{2020-05-22}
+
+%\pagenumbering{gobble}
+
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Find the matrix that reflects space across the
+$y = \tan(25^\circ)x$
+line.
+} \\[\baselineskip]
+Let $A$ be such a matrix. \\
+The elements of $A$ can be found by computing where the standard basis vectors
+will land after being reflected across the
+$y = \tan(25^\circ)x$
+line.
+\begin{equation*}
+	A
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}
+	=
+	A
+	\begin{pmatrix}
+		\cos0 \\
+		\sin0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(2 \cdot 25^\circ) \\
+		\sin(2 \cdot 25^\circ)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(50^\circ) \\
+		\sin(50^\circ)
+	\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+	A
+	\begin{pmatrix}
+		0 \\
+		1
+	\end{pmatrix}
+	=
+	A
+	\begin{pmatrix}
+		\cos(90^\circ) \\
+		\sin(90^\circ)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(90^\circ - 2 \cdot 65^\circ) \\
+		\sin(90^\circ - 2 \cdot 65^\circ)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(-40^\circ) \\
+		\sin(-40^\circ)
+	\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+	A =
+	\boxed{
+		\begin{pmatrix}
+			\cos(50^\circ) & \cos(-40^\circ) \\
+			\sin(50^\circ) & \sin(-40^\circ)
+		\end{pmatrix}
+	}
+\end{equation*}
+
+\section*{2.}
+\begin{equation*}
+	M =
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+		-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+	\end{pmatrix}
+\end{equation*}
+\textit{Find $M^2$, $M^3$, $M^4$, $M^{17}$.} \\[\baselineskip]
+Let $R(\theta)$ be the rotation matrix where
+\begin{equation*}
+	R(\theta) =
+	\begin{pmatrix}
+		\cos \theta & -\sin \theta \\
+		\sin \theta & \cos \theta
+	\end{pmatrix}
+	.
+\end{equation*}
+$M$ can be considered as a specific instance of $R(\theta)$ where
+$\theta = -45^\circ$.
+\begin{equation*}
+	M =
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+		-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(-45^\circ) & -\sin(-45^\circ) \\
+		\sin(-45^\circ) & \cos(-45^\circ)
+	\end{pmatrix}
+	=
+	R(-45^\circ)
+\end{equation*}
+Because $R(\theta)$ has the property of
+\begin{equation*}
+	(R(\theta))^n = R(\theta n),
+\end{equation*}
+it can be said for $M$ that
+\begin{equation*}
+	M^n = R(-45^\circ \cdot n).
+\end{equation*}
+Thus,
+\begin{gather*}
+	\boxed{M^2 = R(-45^\circ \cdot 2) = R(-90^\circ)}, \\
+	\boxed{M^3 = R(-45^\circ \cdot 3) = R(-135^\circ)}, \\
+	\boxed{M^4 = R(-45^\circ \cdot 4) = R(-180^\circ)},\text{ and} \\
+	\boxed{M^{17} = R(-45^\circ \cdot 17) = R(-45^\circ) = M} .
+\end{gather*}
+
+\section*{3.}
+\textit{Which is linear?}
+\begin{gather*}
+	f(x,y) = \langle 3x^2 + y, 2x + y \rangle \\
+	g(x,y) = \langle 3x + y, x + 3y \rangle
+\end{gather*}
+\textit{Find the corresponding matrix for the linear transformation.}
+\bigskip
+\begin{equation*}
+	f(2
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}
+	)
+	=
+	f
+	\begin{pmatrix}
+		2 \\
+		0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		3(2)^2 + (0) \\
+		2(2) + 0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		12 \\
+		4
+	\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+	2f
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}
+	=
+	2
+	\begin{pmatrix}
+		3(1)^2 + 0 \\
+		2(1) + 0
+	\end{pmatrix}
+	=
+	2
+	\begin{pmatrix}
+		3 \\
+		2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		6 \\
+		4
+	\end{pmatrix}
+\end{equation*}
+As
+\begin{equation*}
+	f(2
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}
+	)
+	\neq
+	2f
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix},
+\end{equation*}
+$f$ is not homogeneous of degree 1, a property which linearity requires. \\
+Thus, $f$ is not linear.
+\begin{equation*}
+	g
+	\begin{pmatrix}
+		x \\
+		y
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		3x + y \\
+		x + 3y
+	\end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			3 & 1 \\
+			1 & 3
+		\end{pmatrix}
+		\begin{pmatrix}
+			x \\
+			y
+		\end{pmatrix}
+	}
+\end{equation*}
+
+\section*{4.}
+\textit{Use geometry (graph paper) to find}
+\begin{equation*}
+	\begin{pmatrix}
+		4 & 1 \\
+		1 & 4
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 \\
+		1
+	\end{pmatrix}
+	.
+\end{equation*}
+\bigskip
+\subfile{fig}
+\begin{equation*}
+	\begin{pmatrix}
+		4 & 1 \\
+		1 & 4
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 \\
+		1
+	\end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			5 \\
+			5
+		\end{pmatrix}
+	}
+\end{equation*}
+
+\end{document}
