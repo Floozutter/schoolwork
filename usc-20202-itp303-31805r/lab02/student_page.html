@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="D. Choi's Student Page for ITP 303">
+		<title>Student Page - dchoi933</title>
+		<style>
+			body {
+				margin: 64px;
+				background-color: #ddf8f8;
+				font-family: "Verdana";
+				color: #442a2a;
+			}
+			#content {
+				width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#header {
+				margin-bottom: 1.5em;
+			}
+			#header h1 {
+				margin-bottom: 0.2em;
+			}
+			#colorlabel {
+				color: FireBrick;
+			}
+			#seal {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 60px;
+			}
+			.row {
+				width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 20px;
+			}
+			.column {
+				width: 350px;
+				float: left;
+			}
+			.column h1 {
+				margin-top: 1.2em;
+				margin-bottom: 0.2em;
+				font-size: 1.0em;
+			}
+			.column p {
+				text-indent: 1em;
+			}
+			.column ul, .column ol {
+				margin-top: 0em;
+			}
+			.clearfloat {
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div id="header">
+				<h1>D. Choi</h1>
+				<a href="mailto:dchoi933@usc.edu">dchoi933@usc.edu</a>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="column">
+					<h1>Favorite Color:</h1>
+					<input type="color" id="colorwell" name="Favorite Color" value="#B22222">
+					<label for="colorwell">
+						<span id="colorlabel"><b>You decide!</b></span>
+					</label>
+					<h1><span title="(Off the top of my head.)">Favorite <del>Websites</del> Wikis:</span>
+					</h1>
+					<ol>
+						<li><a href="https://www.wikipedia.org/">Wikipedia</a></li>
+						<li><a href="https://wiki.c2.com/">WikiWikiWeb</a></li>
+						<li><a href="https://wiki.archlinux.org/">ArchWiki</a></li>
+						<li><a href="https://tvtropes.org/">TV Tropes</a></li>
+						<li><a href="https://1d4chan.org/">1d4chan</a> (Content Warning)</li>
+					</ol>
+					<h1>Favorite Activity:</h1>
+					<p>Starting a new project with a spark of inspiration and then forgetting about it when the kick dries out, leaving the prototype stranded in oblivion forever until the inevitable sands of time disintegrates my work and progress and the rest of existence into entropic disorder.</p>
+				</div>
+				<div class="column">
+					<h1>USC 20202 Classes:</h1>
+					<ul>
+						<li>ITP 303</li>
+						<li>MATH 225</li>
+					</ul>
+					<img
+						id="seal"
+						width="200"
+						src="https://upload.wikimedia.org/wikipedia/en/b/bc/University_of_Southern_California_seal.svg"
+						alt="USC Seal"
+					/>
+				</div>
+				<div class="clearfloat"></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="column">
+					<h1>Assignments:</h1>
+					<ol>
+						<li>
+							<a href=http://303.itpwebdev.com/~dchoi933/assignment1/movie.html>
+							Movie Analysis Page
+							</a>
+						</li>
+					</ol>
+				</div>
+				<div class="column">
+					<h1>Labs:</h1>
+					<ol>
+						<li>
+							<a href="javascript:alert('Sorry, it got overwritten. :(');">
+							Old Student Page
+							</a>
+						</li>
+						<li>
+							<a href="javascript:alert('You\'re already here, silly!');">
+							Updated Student Page
+							</a>
+						</li>
+					</ol>
+				</div>
+				<div class="clearfloat"></div>
+			</div>
+		</div>
+		<script>
+			function update_colorlabel(event) {
+				var colorlabel = document.querySelector("#colorlabel");
+				if (colorlabel) { colorlabel.style.color = event.target.value; }
+			}
+			function startup() {
+				colorwell = document.querySelector("#colorwell");
+				colorwell.addEventListener("input", update_colorlabel);
+			}
+			window.addEventListener("load", startup);
+		</script>
+	</body>
+</html>
