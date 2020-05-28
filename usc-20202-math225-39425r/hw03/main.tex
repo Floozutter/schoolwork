@@ -1,5 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{enumitem}
 %\usepackage{tikz}  % Include for figures.
 %\usepackage{subfiles}  % Include for subfiles.
 
@@ -7,7 +10,7 @@
 \newcommand{\NAME}{D. Choi}
 \newcommand{\DATE}{2020-05-27}
 
-\title{\vspace{-4\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
 \author{\NAME}
 \date{\DATE}
 
@@ -17,10 +20,184 @@
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{Find the $2 \times 2$ matrix $M$ that is associated with the
+orthographic projection onto ${y = -\sqrt{3}x}$ in 2 ways.}
+% Hey wow, you can put {braces} around a math expression to make it an atom,
+% preventing line breaks from sneaking in! (Shouldn't matter here, though.)
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{``Hard geometry, easy algebra.''}
+	\\[\baselineskip]
+	Note that $y = -\sqrt{3}x = \tan(120 \degree)x$. \\
+	Let $\hat u(\theta) =
+	\begin{pmatrix} \cos \theta \\ \sin \theta \end{pmatrix}$.
+	\begin{gather*}
+		\begin{pmatrix} 1 \\ 0 \end{pmatrix}
+		\overset{M}{\longrightarrow}
+		\text{proj}_{\hat u(120 \degree)} \hat u(0 \degree)
+		=
+		\cos(120 \degree) \cdot \hat u(120 \degree)
+		=
+		\begin{pmatrix} \frac{1}{4} \\ -\frac{\sqrt{3}}{4} \end{pmatrix}
+		\\
+		\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+		\overset{M}{\longrightarrow}
+		\text{proj}_{\hat u(120 \degree)} \hat u(90 \degree)
+		=
+		\cos(30 \degree) \cdot \hat u(120 \degree)
+		=
+		\begin{pmatrix} -\frac{\sqrt{3}}{4} \\ \frac{3}{4} \end{pmatrix}
+	\end{gather*}
+	Thus,
+	\begin{equation*}
+		M =
+		\boxed{
+			\begin{pmatrix}
+				\frac{1}{4} & -\frac{\sqrt{3}}{4} \\
+				-\frac{\sqrt{3}}{4} & \frac{3}{4}
+			\end{pmatrix}
+		}
+	\end{equation*}
+	\item \textit{``Easy geometry, hard algebra.''}
+	\begin{gather*}
+		\begin{pmatrix} \sqrt{3} \\ 1 \end{pmatrix}
+		=
+		2 \cdot \hat u(30 \degree)
+		\overset{M}{\longrightarrow}
+		\begin{pmatrix} 0 \\ 0 \end{pmatrix}
+		\\
+		\begin{pmatrix} 1 \\ -\sqrt{3} \end{pmatrix}
+		=
+		-2 \cdot \hat u(120 \degree)
+		\overset{M}{\longrightarrow}
+		\begin{pmatrix} 1 \\ -\sqrt{3} \end{pmatrix}
+	\end{gather*}
+	Let $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$.
+	\begin{gather*}
+		\sqrt{3}a + b = 0 \\
+		a - \sqrt{3}b = 1 \\
+		\sqrt{3}c + d = 0 \\
+		c - \sqrt{3}d = -\sqrt{3}
+	\end{gather*}
+	$a = \frac{1}{4}, b = -\frac{3}{4}, c = -\frac{3}{4}, d = \frac{3}{4}$
+	\\[\baselineskip]
+	Thus,
+	\begin{equation*}
+		M =
+		\boxed{
+			\begin{pmatrix}
+				\frac{1}{4} & -\frac{\sqrt{3}}{4} \\
+				-\frac{\sqrt{3}}{4} & \frac{3}{4}
+			\end{pmatrix}
+		}
+	\end{equation*}
+\end{enumerate}
+
+\section*{2.}
+\textit{Find the matrix $B$ that reflects across $y = -\sqrt{3}x$.}
+\\[\baselineskip]
+Let $\text{Ref}(\theta)$ be the reflection matrix where
 \begin{equation*}
-	\pi \approx e
+	\text{Ref}(\theta) =
+	\begin{pmatrix}
+		\cos(2 \theta) & \sin(2 \theta) \\
+		\sin(2 \theta) & -\cos(2 \theta)
+	\end{pmatrix}
+	.
+\end{equation*}
+Note that $y = -\sqrt{3}x = \tan(120 \degree)x$. \\
+Thus,
+\begin{equation*}
+	B = \text{Ref}(120 \degree) =
+	\begin{pmatrix}
+		\cos(2 \cdot 120 \degree) & \sin(2 \cdot 120 \degree) \\
+		\sin(2 \cdot 120 \degree) & -\cos(2 \cdot 120 \degree)
+	\end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			-\frac{1}{2} & -\frac{\sqrt{3}}{2} \\
+			-\frac{\sqrt{3}}{2} & \frac{1}{2}
+		\end{pmatrix}
+	}
 \end{equation*}
 
+\section*{3.}
+\textit{Let $A$ be a $30 \degree$ rotation, let $B$ be the same matrix
+from \textbf{(2)}, and let $M$ be the same matrix from \textbf{(1)}. \\
+Find the following.}
+\\[\baselineskip]
+First, let $\text{Rot}(\theta)$ be the rotation matrix where
+\begin{equation*}
+	\text{Rot}(\theta) =
+	\begin{pmatrix}
+		\cos \theta & -\sin \theta \\
+		\sin \theta & \cos \theta
+	\end{pmatrix}
+	.
+\end{equation*}
+
+\begin{enumerate}[label=(\alph*)]
+	\item $A^{1001} = \text{Rot}(1001 \cdot 30 \degree) =
+	\text{Rot}(1001 \cdot 30 \degree \text{mod} 360) =
+	\boxed{\text{Rot}(150 \degree)}$
+	\item $B^{1001} = (B^2)^{500} \cdot B =
+	([\text{Ref}(120 \degree)]^2)^{500} \cdot \text{Ref}(120 \degree) =
+	\boxed{\text{Ref}(120 \degree)}$
+	\item $AB = \text{Rot}(30 \degree) \text{Ref}(120 \degree) =
+	\text{Ref}(120 \degree + \frac{1}{2} \cdot 30 \degree) =
+	\boxed{\text{Ref}(135 \degree)}$
+	\item $BA = \text{Ref}(120 \degree) \text{Rot}(30 \degree) =
+	\text{Ref}(120 \degree - \frac{1}{2} \cdot 30 \degree) =
+	\boxed{\text{Ref}(105 \degree)}$
+	\item $A^{-1} B^5 = A^{-1} (B^2)^2 \cdot B = A^{-1} B =
+	\text{Rot}(-30 \degree) \text{Ref}(120 \degree) = \\
+	\text{Ref}(120 \degree + \frac{1}{2} \cdot -30 \degree) =
+	\boxed{\text{Ref}(105 \degree)}$
+	\item $M^{1001} = \boxed{M}$ \quad ($M$ is a projection, so $M^2 = M$.)
+	\item
+	$AB \begin{pmatrix} \cos(40 \degree) \\ \sin(40 \degree) \end{pmatrix}$
+	\begin{align*}
+		&=
+		\text{Rot}(30 \degree)
+		\text{Ref}(120 \degree)
+		\begin{pmatrix} \cos(40 \degree) \\ \sin(40 \degree) \end{pmatrix} \\
+		&= 
+		\text{Rot}(30 \degree)
+		\begin{pmatrix} \cos(200 \degree) \\ \sin(200 \degree) \end{pmatrix}
+		\\
+		&=
+		\boxed{
+			\begin{pmatrix}
+				\cos(230 \degree) \\ \sin(230 \degree)
+			\end{pmatrix}
+		}
+	\end{align*}
+\end{enumerate}
+
+\section*{4.}
+\textit{Find a $3 \times 3$ matrix $C$ that rotates 3-space $30 \degree$ about
+the z-axis.}
+\begin{gather*}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\overset{M}{\longrightarrow}
+	\begin{pmatrix} \cos(30 \degree) \\ \sin(30 \degree) \\ 0 \end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	\overset{M}{\longrightarrow}
+	\begin{pmatrix} \cos(120 \degree) \\ \sin(120 \degree) \\ 0 \end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\overset{M}{\longrightarrow}
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+\end{gather*}
+\begin{equation*}
+	C =
+	\boxed{
+		\begin{pmatrix}
+			\cos(30 \degree) & cos(120 \degree) & 0 \\
+			\sin(30 \degree) & sin(120 \degree) & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}
+	}
+\end{equation*}
 \end{document}
