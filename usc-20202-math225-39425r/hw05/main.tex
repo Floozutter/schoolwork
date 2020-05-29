@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+\newcommand{\HOMEWORKNUM}{5}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-05-28}
+
+\title{\vspace{-4\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+\pagenumbering{gobble}  % Include for single-page document.
+
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Let $A$ be the projection matrix that projects onto the plane
+$z = \sqrt{3}y$ in $\mathbb{R}^3$. \\ Find $A$.}
+\\[\baselineskip]
+Note that $z = \sqrt{3}y = \tan(60 \degree)y$.
+\begin{gather*}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\begin{pmatrix}
+		0 \\
+		\cos(60 \degree) \cos(60 \degree) \\
+		\cos(60 \degree) \sin(60 \degree)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		\frac{1}{4} \\
+		\frac{\sqrt{3}}{4}
+	\end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\begin{pmatrix}
+		0 \\
+		\cos(-30 \degree) \cos(60 \degree) \\
+		\cos(-30 \degree) \sin(60 \degree)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		\frac{\sqrt{3}}{4} \\
+		\frac{3}{4}
+	\end{pmatrix}
+\end{gather*}
+\begin{equation*}
+	A =
+	\boxed{
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & \frac{1}{4} & \frac{\sqrt{3}}{4} \\
+			0 & \frac{\sqrt{3}}{4} & \frac{3}{4}
+		\end{pmatrix}
+	}
+\end{equation*}
+\newpage
+
+\section*{2.}
+\textit{Let $B$ be the reflection matrix over the plane
+$z = \sqrt{3}y$ in $\mathbb{R}^3$. \\ Find $B$.}
+\\[\baselineskip]
+Note (still) that $z = \sqrt{3}y = \tan(60 \degree)y$.
+\begin{gather*}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\overset{B}{\longrightarrow}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	\overset{B}{\longrightarrow}
+	\begin{pmatrix}
+		0 \\
+		\cos(2 \cdot 60 \degree) \\
+		\sin(2 \cdot 60 \degree)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		-\frac{1}{2} \\
+		\frac{\sqrt{3}}{2}
+	\end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\overset{B}{\longrightarrow}
+	\begin{pmatrix}
+		0 \\
+		\cos(90 - 2 \cdot 30 \degree) \\
+		\sin(90 - 2 \cdot 30 \degree)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		\frac{\sqrt{3}}{2} \\
+		\frac{1}{2}
+	\end{pmatrix}
+\end{gather*}
+\begin{equation*}
+	B =
+	\boxed{
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & -\frac{1}{2} & \frac{\sqrt{3}}{2} \\
+			0 & \frac{\sqrt{3}}{2} & \frac{1}{2}
+		\end{pmatrix}
+	}
+\end{equation*}
+
+\section*{3.}
+\textit{With $A$ and $B$ from \textbf{(1)} and \textbf{(2)},
+find the following.}
+\begin{enumerate}[label=(\alph*)]
+	\item $A^{100} \begin{pmatrix} 1 \\ 1 \\ \sqrt{3} \end{pmatrix} =
+	A \begin{pmatrix} 1 \\ 1 \\ \sqrt{3} \end{pmatrix} = 
+	\boxed{
+		\begin{pmatrix} 1 \\ 1 \\ \sqrt{3} \end{pmatrix}
+	}$
+	\item $B \begin{pmatrix} 1 \\ 1 \\ \sqrt{3} \end{pmatrix}  =
+	\boxed{
+		\begin{pmatrix} 1 \\ 1 \\ \sqrt{3} \end{pmatrix}
+	}$
+	\item $B^3 \begin{pmatrix} 10 \\ -\sqrt{3} \\ 1 \end{pmatrix} =
+	B^2 B \begin{pmatrix} 10 \\ -\sqrt{3} \\ 1 \end{pmatrix} =
+	B \begin{pmatrix} 10 \\ -\sqrt{3} \\ 1 \end{pmatrix} =
+	\boxed{
+		\begin{pmatrix} 10 \\ \sqrt{3} \\ -1 \end{pmatrix}
+	}$
+\end{enumerate}
+
+\section*{4.}
+\textit{Find the matrix that rotates space $30 \degree$ about the y-axis in
+$\mathbb{R}^3$.}
+\\[\baselineskip]
+Let $\text{Rot}_y(\theta)$ be the rotation matrix where
+\begin{equation*}
+	\text{Rot}_y(\theta) =
+	\begin{pmatrix}
+		\cos \theta & 0 & \sin \theta \\
+		0 & 1 & 0 \\
+		-\sin \theta & 0 & \cos \theta
+	\end{pmatrix}
+	.
+\end{equation*}
+\begin{equation*}
+	\text{Rot}_y(30 \degree)
+	=
+	\begin{pmatrix}
+		\cos(30 \degree) & 0 & \sin(30 \degree) \\
+		0 & 1 & 0 \\
+		-\sin(30 \degree) & 0 & \cos(30 \degree)
+	\end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\
+			0 & 1 & 0 \\
+			-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
+		\end{pmatrix}
+	}
+\end{equation*}
+
+\end{document}
