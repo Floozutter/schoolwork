@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+\newcommand{\HOMEWORKNUM}{6}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-05-29}
+
+\title{\vspace{-4\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+\pagenumbering{gobble}  % Include for single-page document.
+
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Solve.}
+\begin{align*}
+	1x + 0y + 0z &= 0 \\
+	0x + \frac{1}{2}y + \frac{1}{2}z &= 0 \\
+	0x + \frac{1}{2}y + \frac{1}{2}z &= 1
+\end{align*}
+This system can be rewritten in matrix form $A\vec{v} = \vec{b}$ as
+\begin{equation*}
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \frac{1}{2} & \frac{1}{2} \\
+		0 & \frac{1}{2} & \frac{1}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		x \\
+		y \\
+		z
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		0 \\
+		1
+	\end{pmatrix}
+	.
+\end{equation*}
+Such a matrix $A$ is an orthographic projection onto the plane $z = y$. \\
+Since the vector $\vec{b}$ does not lie on the plane $z = y$,
+\boxed{\text{no solutions exist}}
+for $\vec{v}$.
+
+\section*{2.}
+\textit{Solve.}
+\begin{align*}
+	1x + 0y + 0z &= 10 \\
+	0x + \frac{1}{2}y + \frac{1}{2}z &= 5 \\
+	0x + \frac{1}{2}y + \frac{1}{2}z &= 5
+\end{align*}
+This system can be rewritten (again) in matrix form $A\vec{v} = \vec{c}$ as
+\begin{equation*}
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \frac{1}{2} & \frac{1}{2} \\
+		0 & \frac{1}{2} & \frac{1}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		x \\
+		y \\
+		z
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		10 \\
+		5 \\
+		5
+	\end{pmatrix}
+	.
+\end{equation*}
+Such a matrix $A$ is (still) an orthographic projection onto the plane
+$z = y$. \\
+Thus, solutions to the system are in the form
+\begin{equation*}
+	\vec{v} =
+	\boxed{
+		\vec{c} + s \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix}
+	}
+	,
+\end{equation*}
+where $s \in \mathbb{R}$.
+
+\section*{3.}
+\textit{Solve.}
+\begin{equation*}
+	\begin{pmatrix}
+		\cos(30 \degree) & -\sin(30 \degree) & 0 \\
+		\sin(30 \degree) & \cos(30 \degree) & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		x \\
+		y \\
+		z
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(40 \degree) \\
+		\sin(40 \degree) \\
+		10
+	\end{pmatrix}
+\end{equation*}
+The matrix
+\begin{equation*}
+	\begin{pmatrix}
+		\cos(30 \degree) & -\sin(30 \degree) & 0 \\
+		\sin(30 \degree) & \cos(30 \degree) & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+\end{equation*}
+is an instance of the rotation matrix about the z-axis
+\begin{equation*}
+	\text{Rot}_z(\theta) =
+	\begin{pmatrix}
+		\cos \theta & -\sin \theta & 0 \\
+		\sin \theta & \cos \theta & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+\end{equation*}
+where $\theta = 30 \degree$. \\
+From this, the equation can be rewritten as
+\begin{equation*}
+	\text{Rot}_z(30 \degree)
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	=
+	\text{Rot}_z(40 \degree)
+	\begin{pmatrix} 0 \\ 0 \\ 10 \end{pmatrix}
+	.
+\end{equation*}
+Thus,
+\begin{align*}
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	&=
+	(\text{Rot}_z(30 \degree))^{-1}
+	\text{Rot}_z(40 \degree)
+	\begin{pmatrix} 0 \\ 0 \\ 10 \end{pmatrix} \\
+	&=
+	\text{Rot}_z(-30 \degree)
+	\text{Rot}_z(40 \degree)
+	\begin{pmatrix} 0 \\ 0 \\ 10 \end{pmatrix} \\
+	&=
+	\text{Rot}_z(10 \degree)
+	\begin{pmatrix} 0 \\ 0 \\ 10 \end{pmatrix} \\
+	&=
+	\boxed{
+		\begin{pmatrix}
+			\cos(10 \degree) \\
+			\sin(10 \degree) \\
+			10
+		\end{pmatrix}
+	}
+\end{align*}
+
+\end{document}
