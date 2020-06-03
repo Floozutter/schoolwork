@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+\newcommand{\HOMEWORKNUM}{8}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-06-02}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+%\pagenumbering{gobble}  % Include for single-page document.
+
+% Augmented matrix environment.
+% https://tex.stackexchange.com/a/2238
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Solve.}
+\begin{align*}
+	x + 2y + 3z + 5w &= 8 \\
+	2x + 4y + 6z + 10w &= 16 \\
+	x + y + z + w &= 10
+\end{align*}
+This system can be rewritten in matrix form $A\vec{v} = \vec{b}$ as
+\begin{equation*}
+	\begin{pmatrix}
+		1 & 2 & 3 & 5 \\
+		2 & 4 & 6 & 10 \\
+		1 & 1 & 1 & 1
+	\end{pmatrix}
+	\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix}
+	=
+	\begin{pmatrix} 8 \\ 16 \\ 10 \end{pmatrix}
+\end{equation*}
+The coefficient matrix $A$ and the target vector $\vec{b}$ can be concatenated
+column-wise to create the augmented matrix $(A|\vec{b})$.
+\begin{equation*}
+	(A|\vec{b}) =
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		2 & 4 & 6 & 10 & 16 \\
+		1 & 1 & 1 & 1 & 10
+	\end{amatrix}
+\end{equation*}
+The augmented matrix $(A|\vec{b})$ can be row-reduced into reduced row-echelon
+form.
+\footnotesize
+\begin{align*}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		2 & 4 & 6 & 10 & 16 \\
+		1 & 1 & 1 & 1 & 10
+	\end{amatrix}
+	&\xrightarrow{\frac{1}{2}r_2 \rightarrow r_2}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		1 & 2 & 3 & 5 & 8 \\
+		1 & 1 & 1 & 1 & 10
+	\end{amatrix}
+	\xrightarrow{r_2 - r_1 \rightarrow r_2}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		0 & 0 & 0 & 0 & 0 \\
+		1 & 1 & 1 & 1 & 10
+	\end{amatrix}
+	\\
+	&\xrightarrow{r_2 \leftrightarrow r_3}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		1 & 1 & 1 & 1 & 10 \\
+		0 & 0 & 0 & 0 & 0
+	\end{amatrix}
+	\xrightarrow{r_2 - r_1 \rightarrow r_2}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		0 & -1 & -2 & -4 & 2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{amatrix}
+	\\
+	&\xrightarrow{-r_2 \rightarrow r_2}
+	\begin{amatrix}{4}
+		1 & 2 & 3 & 5 & 8 \\
+		0 & 1 & 2 & 4 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{amatrix}
+	\xrightarrow{r_1 - 2r_2 \rightarrow r_1}
+	\begin{amatrix}{4}
+		1 & 0 & -1 & -3 & 12 \\
+		0 & 1 & 2 & 4 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{amatrix}
+\end{align*}
+\normalsize
+\newpage
+\noindent The reduced row echelon form of $(A|\vec{b})$,
+\begin{equation*}
+	\begin{amatrix}{4}
+		1 & 0 & -1 & -3 & 12 \\
+		0 & 1 & 2 & 4 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{amatrix}
+	,
+\end{equation*}
+is analogous to the matrix equation
+\begin{equation*}
+	\begin{pmatrix}
+		1 & 0 & -1 & -3 \\
+		0 & 1 & 2 & 4 \\
+		0 & 0 & 0 & 0
+	\end{pmatrix}
+	\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix}
+	=
+	\begin{pmatrix} 12 \\ -2 \\ 0 \end{pmatrix}
+\end{equation*}
+and also to the system
+\begin{align*}
+	x -z - 3w &= 12 \\
+	y + 2z + 4w &= -2
+	.
+\end{align*}
+In this system, $z$ and $w$ are free variables. \\
+Thus, the system has \boxed{\text{infinitely many solutions}}.
+\\[\baselineskip]
+Solutions to the system are of the form
+\begin{equation*}
+	\boxed{
+		\begin{pmatrix}
+			12 + z + 3w \\
+			-2 - 2z - 4w \\
+			z \\
+			w
+		\end{pmatrix}
+	}
+	,
+\end{equation*}
+or, equivalently,
+\begin{equation*}
+	\boxed{
+		\begin{pmatrix} 12 \\ -2 \\ 0 \\ 0 \end{pmatrix}
+		+
+		\begin{pmatrix} 1 \\ -2 \\ 1 \\ 0 \end{pmatrix} z
+		+
+		\begin{pmatrix} 3 \\ -4 \\ 0 \\ 1 \end{pmatrix} w
+	}
+	.
+\end{equation*}
+\newpage
+
+\section*{2.}
+\textit{Include an example of appropriate matrix as you justify your responses
+to the following questions.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Suppose a linear system having six equations and three
+	unknowns is consistent.
+	Can you guarantee that the solution is unique?
+	Can you guarantee that there are infinitely-many solutions?}
+	\\[\baselineskip]
+	Consider the row-reduced system:
+	\begin{equation*}
+		\begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		=
+		\begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+		.
+	\end{equation*}
+	\boxed{\text{A unique solution cannot be guaranteed.}}
+	\\[\baselineskip]
+	Consider the row-reduced system:
+	\begin{equation*}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & 1 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		=
+		\begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+		.
+	\end{equation*}
+	The only solution to such a system is
+	\begin{equation*}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		=
+		\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+	\end{equation*}
+	Thus, \boxed{\text{infinitely-many solutions cannot be guaranteed}}.
+	\newpage
+	\item \textit{Suppose that a linear system having three equations and six
+	unknowns is consistent.
+	Can you guarantee that the solution is unique?
+	Can you guarantee that there are infinitely-many solutions?}
+	\\[\baselineskip]
+	Consider the row-reduced system:
+	\begin{equation*}
+		\begin{pmatrix}
+			0 & 0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 0
+		\end{pmatrix}
+		\begin{pmatrix} a \\ b \\ c \\ d \\ e \\ f \end{pmatrix}
+		=
+		\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+		.
+	\end{equation*}
+	\boxed{\text{A unique solution cannot be guaranteed.}}
+	\\[\baselineskip]
+	For there to be a unique solution, there must be a pivot for each column
+	of the coefficient matrix in the row-reduced augmented matrix. This is not
+	possible when there are more columns than rows in the coefficient matrix.
+	Thus, \boxed{\text{infinitely-many solutions are guaranteed}}.
+	\item \textit{Suppose that a linear system is consistent and has a unique
+	solution.
+	What can you guarantee about the pivot positions in the augmented matrix?}
+	\\[\baselineskip]
+	For a row-reduced augmented matrix of a consistent linear system with a
+	unique solution, \boxed{\text{a pivot must exist for each column of the
+	coefficient matrix}}.
+\end{enumerate}
+
+\end{document}
