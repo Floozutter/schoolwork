@@ -1,0 +1,187 @@
+% Preamble.
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+%% Title macros.
+\newcommand{\HOMEWORKNUM}{9}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-06-03}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+%% Formatting options.
+%\pagenumbering{gobble}  % Include for single-page document.
+
+
+% Document.
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Find the $2 \times 2$ projection matrix that projects vectors
+orthogonally onto $y = -5x$.} \\[\baselineskip]
+Let $\phi = \tan^{-1}(-5)$, so that $y = \tan(\phi)x$. \\
+Let $\hat u(\theta)$ be the unit vector at an angle of $\theta$ to the
+positive x-axis:
+\begin{equation*}
+	\hat u(\theta) = \begin{pmatrix} \cos \theta \\ \sin \theta \end{pmatrix}
+	.
+\end{equation*}
+Let $M$ be the orthographic projection matrix onto $y = \tan(\phi)x$ with
+elements $a$, $b$, $c$, and $d$:
+\begin{equation*}
+	M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+	.
+\end{equation*}
+The vectors $(a, c)$ and $(b, d)$ can be found by computing geometrically
+where the standard unit basis vectors $(1, 0)$ and $(0, 1)$ respectively will
+land upon being transformed by $M$. $M$ can be considered as the vector
+projection onto $\hat u(\phi)$:
+\footnotesize
+\begin{gather*}
+	\begin{pmatrix} a \\ c \end{pmatrix}
+	=
+	M \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+	=
+	\text{proj}_{\hat u(\phi)} \hat u(0)
+	=
+	\cos(\phi) \hat u(\phi)
+	=
+	\cos(\phi)
+	\begin{pmatrix}
+		\cos(\phi) \\
+		\sin(\phi)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos^2(\phi) \\
+		\frac{1}{2}\sin(2\phi)
+	\end{pmatrix}
+	\\
+	\begin{pmatrix} b \\ d \end{pmatrix}
+	=
+	M \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+	=
+	\text{proj}_{\hat u(\phi)} \hat u(\frac{\pi}{2})
+	=
+	\cos(\phi - \frac{\pi}{2}) \hat u(\phi)
+	=
+	\sin(\phi)
+	\begin{pmatrix}
+		\cos(\phi) \\
+		\sin(\phi)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\frac{1}{2}\sin(2\phi) \\
+		\sin^2(\phi)
+	\end{pmatrix}
+	.
+\end{gather*}
+Note that 
+$\cos(\theta - \frac{\pi}{2})$ = $\sin(\theta)$ and	
+$\sin(\theta)\cos(\theta) = \frac{1}{2}\sin(2\theta)$.
+\normalsize
+\\[\baselineskip]
+Thus,
+\begin{equation*}
+	M
+	=
+	\begin{pmatrix}
+		\cos^2(\phi) & \frac{1}{2}\sin(2\phi) \\
+		\frac{1}{2}\sin(2\phi) & \sin^2(\phi)
+	\end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			\frac{1}{26} & -\frac{5}{26} \\
+			-\frac{5}{26} & \frac{25}{26}
+		\end{pmatrix}
+	}
+	.
+\end{equation*}
+To verify,
+\begin{gather*}
+	\begin{pmatrix}
+		\frac{1}{26} & -\frac{5}{26} \\
+		-\frac{5}{26} & \frac{25}{26}
+	\end{pmatrix}
+	\begin{pmatrix} 1 \\ -5 \end{pmatrix}
+	=
+	\begin{pmatrix} 1 \\ -5 \end{pmatrix}
+	\\
+	\begin{pmatrix}
+		\frac{1}{26} & -\frac{5}{26} \\
+		-\frac{5}{26} & \frac{25}{26}
+	\end{pmatrix}
+	\begin{pmatrix} 5 \\ 1 \end{pmatrix}
+	=
+	\begin{pmatrix} 0 \\ 0 \end{pmatrix}
+	.
+\end{gather*}
+
+\section*{2.}
+\textit{Calculate the dot product of $c = (-4, -9)$ and $d = (-1, 2)$. Do the
+vectors form an acute angle, right angle, or obtuse angle?}\\[\baselineskip]
+Note that algebraically $a \cdot b = a^T b$, and that geometrically
+$a \cdot b =
+\left\lVert a \right\rVert \left\lVert b \right\rVert \cos(\theta)$
+where $\theta$ is the angle between
+$a$ and $b$.
+\\[\baselineskip]
+The dot product can be computed algebraically:
+\begin{equation*}
+	c \cdot d = c^T d
+	=
+	\begin{pmatrix} -4 & -9 \end{pmatrix}
+	\begin{pmatrix} -1 \\ 2 \end{pmatrix}
+	=
+	\boxed{-14}
+	.
+\end{equation*}
+Because $c \cdot d$ is negative while
+$c \cdot d =
+\left\lVert c \right\rVert \left\lVert d \right\rVert \cos(\theta)$, \\
+\boxed{\text{the vectors form an obtuse angle}}.
+
+\section*{3.}
+\textit{If $a = (6, -1, 3)$, for what value of $c$ is the vector
+$b = (4, c, -2)$ perpendicular to $a$?}\\[\baselineskip]
+By the geometric definition of the dot product, the dot product of two
+perpendicular vectors must equal $0$. \\[\baselineskip]
+Thus,
+\begin{equation*}
+	c \cdot d = c^T d =
+	\begin{pmatrix} 6 & -1 & 3 \end{pmatrix}
+	\begin{pmatrix} 4 \\ c \\ -2 \end{pmatrix}
+	= 18 - c = 0.
+\end{equation*}
+Solving for $c$, \boxed{$\textit{c} = 18$}.
+
+\section*{4.}
+\textit{Find the angle between the vector $(1, 1, 1)$ and the vector
+$(-1, -2, 0)$. Explain before you find it whether you think the answer should
+be positive, negative, or $0$.} \\[\baselineskip]
+Because the vectors are in approximately opposite directions (note that
+``approximately opposite'' is very rigorous), the angle should be obtuse.
+\\[\baselineskip]
+\begin{equation*}
+	(1, 1, 1) \cdot (-1, -2, 0)
+	=
+	-3
+	=
+	\sqrt{15} \cos(\theta)
+\end{equation*}
+Solving for $\theta$,
+$\boxed{\theta = \cos^{-1}(-\sqrt{\frac{3}{5}}) \approx 140.8 \degree}$.
+
+\end{document}
