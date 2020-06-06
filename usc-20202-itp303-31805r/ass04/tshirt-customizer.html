@@ -60,7 +60,7 @@
 							</ul>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Add to Cart</button>
+							<button type="button" class="btn btn-primary">Add to Cart</button>
 							<button type="button" class="btn btn-danger" id="btn-remove">Remove from Cart</button>
 							<div class="error-message"></div>
 						</div>
@@ -96,6 +96,97 @@
 			</div>
 		</div>
 		<script>
+			let PREVIEW;
+			let SHIRTS;
+			function updateCart() {
+				// Handle empty and nonempty carts.
+				if (SHIRTS == 0) {
+					document.querySelector("#cart-message").classList.remove("hide");
+					document.querySelector(".cart-item").classList.add("hide");
+				} else {
+					document.querySelector("#cart-message").classList.add("hide");
+					document.querySelector(".cart-item").classList.remove("hide");
+				}
+				
+				// Handle numbers.
+				const subtotal = 20*SHIRTS;
+				const tax = subtotal*0.095;
+				const total = subtotal + tax;
+				document.querySelector("#qty").textContent = SHIRTS;
+				document.querySelector("#subtotal").textContent = "$" + subtotal.toFixed(2);
+				document.querySelector("#tax").textContent = "$" + tax.toFixed(2);
+				document.querySelector("#total").textContent = "$" + total.toFixed(2);
+			}
+			function textListener(event) {
+				PREVIEW.textContent = event.target.value;
+				// Handle errors.
+				if (PREVIEW.textContent.length > 20) {
+					event.target.style.color = "red";
+					event.target.classList.add("is-invalid");
+				} else {
+					event.target.style.color = null;
+					event.target.classList.remove("is-invalid");
+				}
+			}
+			function typefaceListener(event) {
+				PREVIEW.style.fontFamily = event.target.value;
+			}
+			function fontsizeListener(event) {
+				PREVIEW.style.fontSize = event.target.value + "px";
+			}
+			function colorListener(event) {
+				PREVIEW.style.color = event.target.getAttribute("data-color");
+				document.querySelector(".tshirt-color.selected").classList.remove("selected");
+				event.target.classList.add("selected");
+			}
+			function cartAddListener(event) {
+				// Handle errors.
+				const textfield = document.querySelector("#tshirt-text");
+				const err = document.querySelector(".error-message");
+				if (!textfield.value) {
+					textfield.classList.add("is-invalid");
+					err.textContent = "Text is required";
+					return;
+				} else if (textfield.value.length > 20) {
+					err.textContent = "Text cannot be longer than 20 characters";
+					return;
+				} else {
+					event.target.classList.remove("is-invalid");
+					err.textContent = null;
+				}
+				// Update cart.
+				SHIRTS += 1;
+				updateCart();
+			}
+			function cartRemoveListener(event) {
+				SHIRTS = 0;
+				updateCart();
+			}
+			function addListenerByQuery(query, type, listener) {
+				document.querySelector(query).addEventListener(type, listener);
+			}
+			function startup() {
+				// Set globals.
+				PREVIEW = document.querySelector("#tshirt-preview");
+				SHIRTS = 0;
+			
+				document.querySelector("#tshirt-preview")
+				// Listeners for shirt preview.
+				// Add listeners for text, font, and font-size.
+				const add = addListenerByQuery;
+				add("#tshirt-text", "input", textListener);
+				add("#tshirt-font", "change", typefaceListener);
+				add("#tshirt-font-size", "change", fontsizeListener);
+				// Add a color listener for each color.
+				document.querySelectorAll(".tshirt-color").forEach(function(target) {
+					target.addEventListener("click", colorListener);
+				});
+				
+				// Listeners for cart.
+				add(".btn.btn-primary", "click", cartAddListener);
+				add("#btn-remove", "click", cartRemoveListener);
+			}
+			window.addEventListener("load", startup);
 		</script>
 	</body>
 </html>
