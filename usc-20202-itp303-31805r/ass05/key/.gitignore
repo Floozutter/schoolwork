@@ -1,0 +1,4 @@
+# This directory exists to contain the TMDb API key.
+*
+!.gitignore
+!README.md
