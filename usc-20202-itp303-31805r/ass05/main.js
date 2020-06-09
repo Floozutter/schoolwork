@@ -27,6 +27,10 @@ function clearResults() {
 }
 
 function startup() {
+	if (typeof APIKEY === "undefined") {
+		console.error("Failed to load TMDb API key!");
+	}
+	
 	for (let i = 0; i < 2; i++) {
 		addResult("GLaDOS", "????-??-??", "https://upload.wikimedia.org/wikipedia/en/b/bf/Glados.png");
 	}
