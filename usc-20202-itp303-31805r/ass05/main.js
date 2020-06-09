@@ -53,12 +53,27 @@ function displayResults(response) {
 	});
 }
 
+function searchListener(event) {
+	const searchField = document.querySelector("#searchField");
+	const query = searchField.value;
+	ajax(
+		displayResults,
+		`https://api.themoviedb.org/3/search/movie?language=en-US&page=1&query=${query}&api_key=${APIKEY}`
+	);
+}
+
 function startup() {
 	if (typeof APIKEY === "undefined") {
 		console.error("Failed to load TMDb API key!");
 	}
 	
-	ajax(displayResults, `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${APIKEY}`);
+	const searchButton = document.querySelector("#searchButton");
+	searchButton.addEventListener("click", searchListener);
+	
+	ajax(
+		displayResults,
+		`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${APIKEY}`
+	);
 }
 
 window.addEventListener("load", startup);
