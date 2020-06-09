@@ -47,7 +47,7 @@ function displayResults(response) {
 	data.results.forEach(function (result) {
 		addResult(
 			result.title,
-			result.release_data,
+			result.release_date,
 			`https://image.tmdb.org/t/p/w300${result.poster_path}`
 		);
 	});
