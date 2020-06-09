@@ -13,22 +13,36 @@ function ajax(callback, url) {
 	req.send();
 }
 
-function addResult(title, date, imgsrc) {
+function addResult(imgsrc, title, date, rating, votecount, overview) {
+	console.log(title);
 	// Create column.
 	const col = document.createElement("div");
-	col.classList.add("col-6", "col-sm-4", "col-md-3", "text-center");
+	col.classList.add("result", "col-6", "col-sm-4", "col-md-3", "my-10", "text-center");
 	// Create and append image.
+	const imgbox = document.createElement("div");
+	imgbox.classList.add("imgbox");
 	const img = document.createElement("img");
 	img.classList.add("img-fluid", "rounded");
 	img.setAttribute("src", imgsrc);
 	img.setAttribute("alt", title);
-	col.appendChild(img);
+	imgbox.appendChild(img);
+	const hoverbox = document.createElement("div");
+	hoverbox.classList.add("hoverbox");
+	const hoverspan = document.createElement("span");
+	hoverspan.classList.add("hoverspan");
+	hoverspan.textContent = `Rating: ${rating}, Vote Count: ${votecount}`;
+	const paragraph = document.createElement("p");
+	paragraph.textContent = overview;
+	hoverspan.appendChild(paragraph);
+	hoverbox.appendChild(hoverspan);
+	imgbox.appendChild(hoverbox);
+	col.appendChild(imgbox);
 	// Create and append title.
-	const titleElement = document.createElement("h2");
+	const titleElement = document.createElement("h4");
 	titleElement.textContent = title;
 	col.appendChild(titleElement);
 	// Create and append date.
-	const dateElement = document.createElement("h3");
+	const dateElement = document.createElement("h5");
 	dateElement.textContent = date;
 	col.appendChild(dateElement);
 	// Append column to row.
@@ -45,10 +59,19 @@ function displayResults(response) {
 	const data = JSON.parse(response);
 	clearResults();
 	data.results.forEach(function (result) {
+		let imgsrc = result.poster_path;
+		if (imgsrc == null) {
+			imgsrc = "https://via.placeholder.com/400x600"
+		} else {
+			imgsrc = `https://image.tmdb.org/t/p/w300${imgsrc}`
+		}
 		addResult(
+			imgsrc,
 			result.title,
 			result.release_date,
-			`https://image.tmdb.org/t/p/w300${result.poster_path}`
+			result.vote_average,
+			result.vote_count,
+			result.overview.substring(0, 200) + "..."
 		);
 	});
 }
@@ -56,6 +79,13 @@ function displayResults(response) {
 function searchListener(event) {
 	const searchField = document.querySelector("#searchField");
 	const query = searchField.value;
+	if (!query) {
+		ajax(
+			displayResults,
+			`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${APIKEY}`
+		);
+		return;
+	}
 	ajax(
 		displayResults,
 		`https://api.themoviedb.org/3/search/movie?language=en-US&page=1&query=${query}&api_key=${APIKEY}`
@@ -70,10 +100,7 @@ function startup() {
 	const searchButton = document.querySelector("#searchButton");
 	searchButton.addEventListener("click", searchListener);
 	
-	ajax(
-		displayResults,
-		`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${APIKEY}`
-	);
+	searchListener();
 }
 
 window.addEventListener("load", startup);

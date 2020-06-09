@@ -1,0 +1,23 @@
+.imgbox {
+	position: relative;
+}
+
+.imgbox .hoverbox {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+	padding-top: 2em;
+	background-color: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	color: white;
+	visibility: hidden;
+}
+.imgbox:hover .hoverbox {
+	visibility: visible;
+}
+.hoverspan p {
+	padding-top: 1em;
+}
