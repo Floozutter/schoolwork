@@ -74,6 +74,10 @@ function displayResults(response) {
 			result.overview.substring(0, 200) + "..."
 		);
 	});
+	const showncount = document.querySelector("#showncount");
+	showncount.textContent = data.results.length;
+	const totalcount = document.querySelector("#totalcount");
+	totalcount.textContent = data.total_results;
 }
 
 function searchListener(event) {
