@@ -21,7 +21,16 @@ function addResult(title, date, imgsrc) {
 	row.appendChild(col);
 }
 
+function clearResults() {
+	let row = document.querySelector("#results .row");
+	while (row.firstChild) { row.removeChild(row.lastChild); }
+}
+
 function startup() {
+	for (let i = 0; i < 2; i++) {
+		addResult("GLaDOS", "????-??-??", "https://upload.wikimedia.org/wikipedia/en/b/bf/Glados.png");
+	}
+	clearResults();
 	for (let i = 0; i < 5; i++) {
 		addResult("GLaDOS", "????-??-??", "https://upload.wikimedia.org/wikipedia/en/b/bf/Glados.png");
 	}
