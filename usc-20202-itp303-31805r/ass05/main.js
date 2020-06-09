@@ -38,11 +38,11 @@ function addResult(imgsrc, title, date, rating, votecount, overview) {
 	imgbox.appendChild(hoverbox);
 	col.appendChild(imgbox);
 	// Create and append title.
-	const titleElement = document.createElement("h4");
+	const titleElement = document.createElement("h5");
 	titleElement.textContent = title;
 	col.appendChild(titleElement);
 	// Create and append date.
-	const dateElement = document.createElement("h5");
+	const dateElement = document.createElement("h6");
 	dateElement.textContent = date;
 	col.appendChild(dateElement);
 	// Append column to row.
