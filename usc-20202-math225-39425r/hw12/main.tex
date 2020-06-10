@@ -27,10 +27,62 @@
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
-\begin{equation*}
-	\pi \approx e
-\end{equation*}
+\textit{Determine whether the following statements are true or false and
+provide a justification for your response.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{If $A\vec{x}$ is defined, then the number of components of
+	$x$ equals the number of rows of $A$.} \\[\baselineskip]
+	\boxed{\text{False}}, consider either
+	\begin{equation*}
+		A\vec{x} =
+		\begin{pmatrix} a & b \end{pmatrix}
+		\begin{pmatrix} x \\ y \end{pmatrix}
+		= ax + by
+		,
+	\end{equation*}
+	or
+	\begin{equation*}
+		A\vec{x} =
+		\begin{pmatrix} a & b \\ c & d \\ e & f \end{pmatrix}
+		\begin{pmatrix} x \\ y \end{pmatrix}
+		=
+		\begin{pmatrix}
+			ax + by \\
+			dx + dy \\
+			ex + fy
+		\end{pmatrix}
+		.
+	\end{equation*}
+	Instead, for $A\vec{x}$ to be defined, the number of columns of $A$ must
+	equal the number of rows (components) of $\vec{x}$.
+	
+	\item \textit{The solution space to the equation $A\vec{x} = \vec{b}$ is
+	equivalent to the solution space to the linear system whose augmented
+	matrix is $(A|\vec{b})$.} \\[\baselineskip]
+	\boxed{\text{True}}. As representations of linear systems of equations,
+	the equation $A\vec{x} = \vec{b}$ is equivalent to $(A|\vec{b})$. Because
+	both systems are equivalent, they must share the same solution space.
+	
+	\item \textit{If a linear system of equations has 8 equations and 5
+	unknowns, then the dimensions of matrix $A$ in the corresponding equation
+	$A\vec{x} = \vec{b}$ is $5 \times 8$.} \\[\baselineskip]
+	\boxed{\text{False}}. For $A\vec{x}$ to be defined where $\vec{x}$ has 5
+	rows (components), $A$ must have 5 columns. The correct dimensions for the
+	coefficient matrix $A$ is $8 \times 5$.
+	\newpage
+	
+	\item \textit{If $A$ has a pivot in every row, then every equation
+	$A\vec{x} = \vec{b}$ is consistent.} \\[\baselineskip]
+	\boxed{\text{True}}. For
+	$A_{m \times n}\vec{x}_{n \times 1} = \vec{b}_{m \times 1}$ to have no
+	solution, the dimension of the column space of $A_{m \times n}$ must be
+	less than $m$. This is not the case for a matrix $A$ that has a pivot in
+	every row of its row echelon reduced form, because such a matrix would
+	have full rank.
+	
+	\item \textit{If $A$ is a $9 \times 5$ matrix, then $A\vec{x} = \vec{b}$
+	is inconsistent for some vector $\vec{b}$.} \\[\baselineskip]
+	\boxed{\text{True}}. Such a system is overdetermined.
+\end{enumerate}
 
 \end{document}
