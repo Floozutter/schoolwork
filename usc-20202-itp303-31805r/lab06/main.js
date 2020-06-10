@@ -1,7 +1,8 @@
 function setWeather(data) {
 	const obs = data.data[0];  // First returned observation.
-	const report = `${obs.temp}\u2109, feels like ${obs.app_temp}\u2109`;
-	$("#weather-report").text(report);
+	$("#weather-report").text(
+		`${obs.temp}\u2109, feels like ${obs.app_temp}\u2109`
+	);
 }
 
 function addItem(text) {
@@ -10,18 +11,12 @@ function addItem(text) {
 		$("<span></span>")
 			.addClass("close")
 			.text("X")
-			.click(closeListener)
+			.click(function() {
+				$(this).closest("li").remove();
+			})
 	);
 	item.append($("<span></span>").text(" - " + text));
 	$("#todo ul").append(item);
-}
-
-function buttonListener() {
-	addItem($("#todo-field").val());
-}
-
-function closeListener() {
-	$(this).closest("li").remove();
 }
 
 function startup() {
@@ -32,7 +27,9 @@ function startup() {
 	);
 	
 	// Add listener to To-Do List button.
-	$("#todo-button").click(buttonListener);
+	$("#todo-button").click(function() {
+		addItem($("#todo-field").val());
+	});
 	
 	// Add example To-Do List items.
 	addItem("Study for ITP 303 midterm");
