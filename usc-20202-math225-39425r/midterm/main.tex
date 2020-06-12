@@ -16,9 +16,13 @@
 %% Formatting options.
 %\pagenumbering{gobble}  % Include for single-page document.
 
-% Norm macro.
+% Macros.
+%% Norm.
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-% Augmented matrix environment.
+%% Rotation and reflection matrices.
+\newcommand{\rota}[1]{\text{Rot}(#1 \degree)}
+\newcommand{\refl}[1]{\text{Ref}(#1 \degree)}
+%% Augmented matrix.
 % https://tex.stackexchange.com/a/2238
 \newenvironment{amatrix}[1]{%
   \left(\begin{array}{@{}*{#1}{c}|c@{}}
@@ -32,66 +36,347 @@
 \maketitle
 
 \section*{1.}
-\textit{Let $A$ be the $3 \times 3$ orthographic projection matrix that
-projects vectors onto the plane $x + 2y + 3z = 0$. Find $A$.}
-\\[\baselineskip]
-The equation for the plane $x + 2y + 3z = 0$ can be rewritten as
-\begin{equation*}
-	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
-	\cdot
-	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
-	= \vec{n} \cdot \vec{v}
-	= 0
-	.
-\end{equation*}
-In this form, it is apparent that $\vec{n}$ is a normal vector to the plane.
-\\
-For any vector $\vec{v}$, the vector rejection of $\vec{v}$ from $\vec{n}$
-(which is $\vec{v} - \text{proj}_{\vec{n}}\vec{v}$) will be the orthographic
-projection of $\vec{v}$ onto the plane. Thus, for the standard basis unit
-vectors,
-\begin{gather*}
-	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
-	\overset{A}{\longrightarrow}
-	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
-	-
-	\frac{
-		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+\textit{Let $A$ be the matrix associated with the orthogonal projection onto
+the plane $x + y - 3z = 0$.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Find $A$.} \\[\baselineskip]
+	The equation for the plane $x + y - 3z = 0$ can be rewritten as
+	\begin{equation*}
+		\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
 		\cdot
-		\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
-	}{
-		\norm{\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}}^2
-	}
-	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
-	=
-	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
-	-
-	\frac{1}{14}
-	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
-	=
-	\begin{pmatrix}
-		\frac{13}{14} \\ -\frac{2}{14} \\ -\frac{3}{14}
-	\end{pmatrix}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		= \vec{n} \cdot \vec{v}
+		= 0
+		.
+	\end{equation*}
+	In this form, it is apparent that $\vec{n}$ is a normal vector to the plane.
 	\\
-	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
-	\overset{A}{\longrightarrow}
-	\ldots
-	\\
-	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
-	\overset{A}{\longrightarrow}
-	\ldots
-\end{gather*}
-And so,
-\begin{equation*}
-	\boxed{
-		A =
+	For any vector $\vec{v}$, the vector rejection of $\vec{v}$ from $\vec{n}$
+	(which is $\vec{v} - \text{proj}_{\vec{n}}\vec{v}$) will be the orthographic
+	projection of $\vec{v}$ onto the plane. Thus, for the standard basis unit
+	vectors,
+	\begin{gather*}
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+		\overset{A}{\longrightarrow}
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+		-
+		\frac{
+			\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+			\cdot
+			\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		}{
+			\norm{\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}}^2
+		}
+		\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		=
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+		-
+		\frac{1}{11}
+		\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		=
 		\begin{pmatrix}
-			\frac{13}{14} & ? & ? \\
-			-\frac{2}{14} & ? & ? \\
-			-\frac{3}{14} & ? & ?
+			\frac{10}{11} \\ -\frac{1}{11} \\ \frac{3}{11}
 		\end{pmatrix}
-	}
-	.
+		\\
+		\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+		\overset{A}{\longrightarrow}
+		\ldots
+		=
+		\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+		-
+		\frac{1}{11}
+		\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		=
+		\begin{pmatrix}
+			-\frac{1}{11} \\ \frac{10}{11} \\ \frac{3}{11}
+		\end{pmatrix}
+		\\
+		\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+		\overset{A}{\longrightarrow}
+		\ldots
+		=
+		\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+		+
+		\frac{3}{11}
+		\begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		=
+		\begin{pmatrix}
+			\frac{3}{11} \\ \frac{3}{11} \\ \frac{2}{11}
+		\end{pmatrix}
+	\end{gather*}
+	And so,
+	\begin{equation*}
+		\boxed{
+			A =
+			\frac{1}{11}
+			\begin{pmatrix}
+				10 & -1 & 3 \\
+				-1 & 10 & 3 \\
+				-3 & 3 & 2
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+	
+	\item \textit{Let $\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$ be the columns of
+	$A$. Are $\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$ linearly independent? Why
+	or why not?}\\[\baselineskip]
+	$\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$ cannot be linearly independent
+	because $A$ is a projection matrix from $\mathbb{R}^3$ onto a plane. The
+	range of such a projection matrix does not include all of $\mathbb{R}^3$,
+	meaning that the column space of $A$ does not include all of
+	$\mathbb{R}^3$. The linear dependence of
+	$\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$ can also be verified by computing
+	the determinant of $A$, which should be $0$.
+\end{enumerate}
+
+\section*{2.}
+\textit{Let $B$ be the matrix associated with the reflection across the plane
+$x = 0$.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Let $\{\vec{w}_1, \vec{w}_2, \vec{w}_3\}$ be the columns of
+	$B$. What is span$\{\vec{w}_1, \vec{w}_2, \vec{w}_3\}$? Explain your
+	reasoning.} \\[\baselineskip]
+	The span of $\{\vec{w}_1, \vec{w}_2, \vec{w}_3\}$ is $\mathbb{R}^3$.
+	Such a reflection matrix $B$ is invertible. An invertible $n \times n$
+	matrix over $\mathbb{R}$ has column space $\mathbb{R}^n$ because such a
+	matrix must be bijective. Thus, the span of
+	$\{\vec{w}_1, \vec{w}_2, \vec{w}_3\}$ is $\mathbb{R}^3$.
+	
+	\item \textit{Find all solutions to the system $AB\vec{x} = (1, 2, 1)$.}
+	\\[\baselineskip]
+	Solutions to $A\vec{v} = (1, 2, 1)$ are
+	\begin{equation*}
+		\vec{v} =
+		\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}
+		+ s \begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		B\vec{x} = \vec{v} =
+		\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}
+		+ s \begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		.
+	\end{equation*}
+	Because $B$ is a reflection matrix, $B = B^{-1}$, and so
+	\begin{align*}
+		\vec{x} = B(
+		\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}
+		+ s \begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix}
+		)
+		=
+		B \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}
+		+ B (s \begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix})
+		=
+		\boxed{
+			\begin{pmatrix} -1 \\ 2 \\ 1 \end{pmatrix}
+			+ B (s \begin{pmatrix} 1 \\ 1 \\ -3 \end{pmatrix})
+		}
+		.
+	\end{align*}
+\end{enumerate}
+
+\section*{3.}
+\textit{The reduced row echelon form of the left matrix $M$ is the right
+matrix.}
+\begin{equation*}
+	\begin{pmatrix}
+		1 & 1 & -1 & 1 \\
+		2 & 1 & -1 & 3 \\
+		1 & 4 & -4 & -2 \\
+		2 & 0 & 1 & 2
+	\end{pmatrix}
+	\xrightarrow{\text{RREF}}
+	\begin{pmatrix}
+		1 & 0 & 0 & 2 \\
+		0 & 1 & 0 & -3 \\
+		0 & 0 & 1 & -2 \\
+		0 & 0 & 0 & 0
+	\end{pmatrix}
 \end{equation*}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Find the solution(s) to $M\vec{x} = 0$.}
+	\begin{equation*}
+		\begin{amatrix}{4}
+			1 & 0 & 0 & 2 & 0 \\
+			0 & 1 & 0 & -3 & 0 \\
+			0 & 0 & 1 & -2 & 0 \\
+			0 & 0 & 0 & 0 & 0
+		\end{amatrix}
+	\end{equation*}
+	\begin{gather*}
+		x + 2w = 0 \\
+		y - 3w = 0 \\
+		z - 2w = 0
+	\end{gather*}
+	Solutions to the system are of the form
+	\begin{equation*}
+		\begin{pmatrix}
+			-2w \\ 3w \\ 2w \\ w
+		\end{pmatrix}
+		=
+		\boxed{
+			\begin{pmatrix}
+				-2 \\ 3 \\ 2 \\ 1
+			\end{pmatrix}
+			w
+		}
+		.
+	\end{equation*}
+	
+	\item \textit{Would it be easy to solve $M\vec{x} = (1, 1, 1, 0)$ without
+	any further information?} \\[\baselineskip]
+	Yes.
+	\begin{gather*}
+		x + 2w = 1 \\
+		y - 3w = 1 \\
+		z - 2w = 1
+	\end{gather*}
+	Solutions to the system are of the form
+	\begin{equation*}
+		\begin{pmatrix}
+			1 -2w \\ 1 + 3w \\ 1 + 2w \\ w
+		\end{pmatrix}
+		=
+		\boxed{
+			\begin{pmatrix}
+				1 \\ 1 \\ 1 \\ 0
+			\end{pmatrix}
+			+
+			\begin{pmatrix}
+				-2 \\ 3 \\ 2 \\ 1
+			\end{pmatrix}
+			w
+		}
+		.
+	\end{equation*}
+	
+	\item \textit{Write the first column of $M$ as a linear combination of
+	the last $3$ columns.}
+	\begin{equation*}
+		\begin{pmatrix}
+			1 & -1 & 1 \\
+			1 & -1 & 3 \\
+			4 & -4 & -2 \\
+			0 & 1 & 2
+		\end{pmatrix}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 \\ 2 \\ 1 \\ 2
+		\end{pmatrix}
+	\end{equation*}
+	Plugging this into GNU Octave, a solution is
+	\begin{equation*}
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		=
+		\begin{pmatrix} 1.5 \\ 1 \\ 0.5 \end{pmatrix}
+		.
+	\end{equation*}
+	To verify,
+	\begin{equation*}
+		\boxed{
+			1.5 \begin{pmatrix} 1 \\ 1 \\ 4 \\ 0 \end{pmatrix}
+			+
+			\begin{pmatrix} -1 \\ -1 \\ -4 \\ 1 \end{pmatrix}
+			+
+			0.5 \begin{pmatrix} 1 \\ 3 \\ -2 \\ 2 \end{pmatrix}
+			=
+			\begin{pmatrix} 1 \\ 2 \\ 1 \\ 2 \end{pmatrix}
+		}
+		.
+	\end{equation*}
+\end{enumerate}
+
+\section*{4.}
+\textit{Let $N$ be a $100 \times 100$ matrix with the following pattern: \\
+\indent Everything on and above the diagonal is 1. \\
+\indent Everything below the diagonal is 0.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{What is the first column of $N^{-1}$? \\
+	Hint: Can you solve $N\vec{x} = (1, 0, 0, ..., 0)$?}
+	\begin{equation*}
+		\boxed{\vec{x} = (1, 0, 0, ..., 0)}
+	\end{equation*}
+	
+	\item \textit{What is the third column of $N^{-1}$? \\
+	Hint: Can you guess what a solution to
+	$N\vec{x} = (0, 0, 1, 0, 0, ..., 0)$ is by playing with linear
+	combinations of columns of $N$?}
+	\begin{equation*}
+		\boxed{\vec{x} = (0, -1, 1, 0, 0, ..., 0)}
+	\end{equation*}
+	
+	\item \textit{What is $N N^{-1}$?} \\[\baselineskip]
+	is this a trick question i'm scared
+	\begin{equation*}
+		\boxed{N N^{-1} = I_{100}}
+	\end{equation*}
+\end{enumerate}
+
+\section*{5.}
+\textit{Let $C$, $D$, and $E$ be $2 \times 2$ matrices that do the
+following: \\
+\indent C: $\rota{45}$ \\
+\indent D: $\rota{-60}$ \\
+\indent E: $\refl{30}$}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Find $DE^7C$.}
+	\begin{align*}
+		DE^7C &= DEC = \rota{-60} (\refl{30} (\rota{45})) \\
+		&= \rota{-60} (\refl{7.5}) = \boxed{\refl{-22.5}}
+	\end{align*}
+	
+	\item \textit{Find $(CE^8D)^{-1}$.}
+	\begin{equation*}
+		(CE^8D)^{1} = (CD)^{1} =
+		(\rota{45} \rota{-60})^{-1} =
+		(\rota{-15})^{-1} =
+		\boxed{\rota{15}}
+	\end{equation*}
+\end{enumerate}
+
+\section*{6.}
+\textit{Let the $2 \times 2$ matrix $U$ have coluns $\vec{v}$ and $\vec{w}$:
+$U = (\vec{v} | \vec{w})$. \\ {[Diagram omitted.]}}
+\begin{equation*}
+	\vec{v} = \begin{pmatrix} 3 \\ 1 \end{pmatrix}
+	,
+	\vec{w} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}
+	,
+	\vec{b} = \begin{pmatrix} 8 \\ 8 \end{pmatrix}
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Solve $U\vec{x} = \vec{b}$.}
+	\begin{gather*}
+		\begin{pmatrix}
+			3 & 1 \\
+			1 & 3
+		\end{pmatrix}
+		\begin{pmatrix} x \\ y \end{pmatrix}
+		=
+		\begin{pmatrix} 8 \\ 8 \end{pmatrix}
+		\\
+		\boxed{
+			\begin{pmatrix} x \\ y \end{pmatrix}
+			=
+			\begin{pmatrix} 2 \\ 2 \end{pmatrix}
+		}
+	\end{gather*}
+	
+	\item \textit{Find $U^{-1}$.} \\[\baselineskip]
+	Plugging this into GNU Octave,
+	\begin{equation*}
+		U^{-1} =
+		\boxed{
+			\frac{1}{8}
+			\begin{pmatrix}
+				3 & -1 \\
+				-1 & 3
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+\end{enumerate}
 
 \end{document}
