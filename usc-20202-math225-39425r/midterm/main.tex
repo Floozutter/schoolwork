@@ -16,16 +16,82 @@
 %% Formatting options.
 %\pagenumbering{gobble}  % Include for single-page document.
 
+% Norm macro.
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% Augmented matrix environment.
+% https://tex.stackexchange.com/a/2238
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
 
 % Document.
 \begin{document}
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{Let $A$ be the $3 \times 3$ orthographic projection matrix that
+projects vectors onto the plane $x + 2y + 3z = 0$. Find $A$.}
+\\[\baselineskip]
+The equation for the plane $x + 2y + 3z = 0$ can be rewritten as
 \begin{equation*}
-	\pi \approx e
+	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
+	\cdot
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	= \vec{n} \cdot \vec{v}
+	= 0
+	.
+\end{equation*}
+In this form, it is apparent that $\vec{n}$ is a normal vector to the plane.
+\\
+For any vector $\vec{v}$, the vector rejection of $\vec{v}$ from $\vec{n}$
+(which is $\vec{v} - \text{proj}_{\vec{n}}\vec{v}$) will be the orthographic
+projection of $\vec{v}$ onto the plane. Thus, for the standard basis unit
+vectors,
+\begin{gather*}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	-
+	\frac{
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+		\cdot
+		\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
+	}{
+		\norm{\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}}^2
+	}
+	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
+	=
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	-
+	\frac{1}{14}
+	\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}
+	=
+	\begin{pmatrix}
+		\frac{13}{14} \\ -\frac{2}{14} \\ -\frac{3}{14}
+	\end{pmatrix}
+	\\
+	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\ldots
+	\\
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\overset{A}{\longrightarrow}
+	\ldots
+\end{gather*}
+And so,
+\begin{equation*}
+	\boxed{
+		A =
+		\begin{pmatrix}
+			\frac{13}{14} & ? & ? \\
+			-\frac{2}{14} & ? & ? \\
+			-\frac{3}{14} & ? & ?
+		\end{pmatrix}
+	}
+	.
 \end{equation*}
 
 \end{document}
