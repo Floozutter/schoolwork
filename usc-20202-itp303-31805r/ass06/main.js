@@ -1,5 +1,4 @@
 function setWeather(city) {
-	console.log(city);
 	$.get(
 		`https://api.weatherbit.io/v2.0/current?city=${city}&units=I&key=${APIKEY}`,
 		function(data) {
@@ -37,11 +36,11 @@ function startup() {
 		if (e.which === 13) { addingListener(); }
 	});
 	$("#city").change(function() {
-		setWeather($(this).options[$(this).selectedIndex].value);
+		setWeather($(this).val());
 	});
 	
 	// Set weather using default city selection.
-	setWeather("Los Angeles,CA");
+	setWeather($("#city").val());
 	
 	// Add example To-Do List items.
 	addItem("Study for ITP 303 midterm");
