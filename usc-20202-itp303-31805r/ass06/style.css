@@ -1,0 +1,56 @@
+body {
+	font-size: 18px;
+	font-family: "Verdana", "Geneva", sans-serif;
+}
+#weather {
+	width: 800px;
+	margin: auto;
+	margin-top: 16px;
+	margin-bottom: 50px;
+	padding: 6px;
+	box-shadow: 0 0 8px #888888;
+	font-size: 18px;
+	text-align: center;
+}
+#weather select {
+	font-size: 14px;
+	font-family: "Verdana", "Geneva", sans-serif;
+}
+#todo {
+	width: 500px;
+	margin: auto;
+	padding: 20px;
+	box-shadow: 0 0 8px #888888;
+}
+#todo h1 {
+	margin-top: 8px;
+	margin-bottom: 20px;
+	margin-left: 0;
+	font-size: 1.75em;
+}
+#todo input[type="text"] {
+	width: 250px;
+	font-size: 14px;
+	font-family: "Verdana", "Geneva", sans-serif;
+	
+}
+#todo ul {
+	list-style-type: none;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#todo li {
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #FFFFFF;
+}
+#todo .crossed :not(.close) {
+	font-style: italic;
+	text-decoration: line-through;
+	color: #888888;
+}
+
+#todo li:hover {
+	background-color: #EEEEEE;
+}

@@ -15,7 +15,13 @@
 	</head>
 	<body>
 		<div id="weather">
-			Today's weather in Los Angeles:
+			Today's weather in
+			<select id="city" name="city">
+				<option value="Honolulu,HI">Honolulu, HI</option>
+				<option value="Los Angeles,CA" selected="selected">Los Angeles, CA</option>
+				<option value="New York City,NY">New York City, NY</option>
+			</select>
+			:
 			<span id="weather-report"></span>
 		</div>
 		<div id="todo">
