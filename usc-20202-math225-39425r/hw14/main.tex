@@ -21,16 +21,159 @@
 %% Formatting options.
 %\pagenumbering{gobble}  % Include for single-page document.
 
+% Macros.
+%% Norm.
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
 
 % Document.
 \begin{document}
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{For a generic orthographic projection $A$ in $\mathbb{R}^3$, show that
+$\text{det}(A) = 0$.} \\[\baselineskip]
+Let $\vec{n}$ be the normal vector so that the orthographic projection $A$ of
+a vector $\vec{v}$ is equivalent to the orthographic projection onto the plane
 \begin{equation*}
-	\pi \approx e
+	\vec{n} \cdot \vec{v}
+	=
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	\cdot
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	=
+	0
+	.
 \end{equation*}
-
+Such a projection is also equivalent to the vector rejection of $\vec{v}$ from
+$\vec{n}$. Thus, 
+\begin{equation*}
+	A\vec{v}
+	=
+	\vec{v} - \text{proj}_{\vec{n}}\vec{v}
+	=
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	-
+	\frac{
+		\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+		\cdot
+		\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	}{
+		\norm{\begin{pmatrix} a \\ b \\ c \end{pmatrix}}^2
+	}
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	=
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	-
+	\frac{ax + by + cz}{a^2 + b^2 + c^2}
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	.
+\end{equation*}
+The columns of $A$ can be found by computing the vector rejections of the
+standard basis unit vectors from $\vec{n}$:
+\begin{gather*}
+	A \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	=
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	-
+	\frac{a}{a^2 + b^2 + c^2}
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	=
+	\frac{1}{a^2 + b^2 + c^2}
+	\begin{pmatrix}
+		b^2 + c^2 \\
+		-ab \\
+		-ac
+	\end{pmatrix}
+	\\
+	A \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	=
+	\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+	-
+	\frac{b}{a^2 + b^2 + c^2}
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	=
+	\frac{1}{a^2 + b^2 + c^2}
+	\begin{pmatrix}
+		-ab \\
+		a^2 + c^2 \\
+		-bc
+	\end{pmatrix}
+	\\
+	A \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	=
+	\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	-
+	\frac{c}{a^2 + b^2 + c^2}
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix}
+	=
+	\frac{1}{a^2 + b^2 + c^2}
+	\begin{pmatrix}
+		-ac \\
+		-bc \\
+		a^2 + b^2
+	\end{pmatrix}
+	.
+\end{gather*}
+Thus,
+\begin{equation*}
+	A
+	=
+	\frac{1}{a^2 + b^2 + c^2}
+	\begin{pmatrix}
+		b^2 + c^2 & -ab & -ac \\
+		-ab & a^2 + c^2 & -bc \\
+		-ac & -bc & a^2 + b^2
+	\end{pmatrix}
+	.
+\end{equation*}
+For the sake of convenience, let
+\begin{equation*}
+	B
+	=
+	\begin{pmatrix}
+		b^2 + c^2 & -ab & -ac \\
+		-ab & a^2 + c^2 & -bc \\
+		-ac & -bc & a^2 + b^2
+	\end{pmatrix}
+\end{equation*}
+so that
+\begin{equation*}
+	A = \frac{B}{a^2 + b^2 + c^2},
+\end{equation*}
+which allows computing the determinant of $A$ as
+\begin{equation*}
+	\text{det}(A)
+	=
+	\left( \frac{1}{a^2 + b^2 + c^2} \right)^3
+	\text{det}(B)
+	=
+	s \cdot \text{det}(B)
+	.
+\end{equation*}
+The row reduction of $B$ results in
+\begin{equation*}
+	\text{rref}(B)
+	=
+	\begin{pmatrix}
+		1 & 0 & -\frac{a}{c} \\
+		0 & 1 & -\frac{b}{c} \\
+		0 & 0 & 0
+	\end{pmatrix}
+	.
+\end{equation*}
+Because $\text{rref}(B)$ contains a row of zeros, the determinant of $B$ must
+be $0$. \\
+Thus,
+\begin{equation*}
+	\text{det}(A)
+	=
+	s \cdot \text{det}(B)
+	=
+	s \cdot 0
+	=
+	\boxed{0}
+	.
+\end{equation*}
+	
 \end{document}
