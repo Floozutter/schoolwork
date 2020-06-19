@@ -1,0 +1,263 @@
+% Preamble.
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+%% Title macros.
+\newcommand{\HOMEWORKNUM}{17}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-06-18}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+%% Formatting options.
+%\pagenumbering{gobble}  % Include for single-page document.
+
+
+% Document.
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Find the matrix that rotates space $30 \degree$ counterclockwise about
+the vector $\vec{n} = \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}$.}
+\\[\baselineskip]
+The plane normal to $\vec{n}$ can be represented by the equation
+\begin{equation*}
+	0
+	=
+	\vec{n} \cdot \begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	=
+	\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}
+	\cdot
+	\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+	=
+	x - z
+	.
+\end{equation*}
+Let $\vec{v}_1 = \vec{n}$. \\
+A vector that is orthogonal to $\vec{v}_1$ can be found on the plane
+$0 = x - z$:
+\begin{equation*}
+	\vec{v}_2 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}
+	.
+\end{equation*}
+The vector that is orthogonal to both $\vec{v}_1$ and $\vec{v}_2$ can be found
+by computing the cross product of $\vec{v}_1$ and $\vec{v}_2$:
+\begin{equation*}
+	\vec{v}_3 = \vec{v}_1 \times \vec{v}_2 =
+	\begin{pmatrix} 0 \\ -2 \\ 0 \end{pmatrix}
+	.
+\end{equation*}
+A convenient basis for describing the rotation can be constructed from
+normalizing the orthogonal triple $\vec{v}_1$, $\vec{v}_2$, and $\vec{v}_3$.
+Let such a basis be $\mathcal{B}$, where
+\begin{equation*}
+	\mathcal{B}
+	=
+	\left\{ \hat{v}_1, \hat{v}_2, \hat{v}_3 \right\}
+	=
+	\left\{
+		\begin{pmatrix}
+			\frac{1}{\sqrt{2}} \\
+			0 \\
+			-\frac{1}{\sqrt{2}}
+		\end{pmatrix}
+		,
+		\begin{pmatrix}
+			\frac{1}{\sqrt{2}} \\
+			0 \\
+			\frac{1}{\sqrt{2}}
+		\end{pmatrix}
+		,
+		\begin{pmatrix}
+			0 \\
+			-1 \\
+			0
+		\end{pmatrix}
+	\right\}
+	,
+\end{equation*}
+in contrast to the standard basis $\mathcal{S}$, where
+\begin{equation*}
+	\mathcal{S}
+	=
+	\left\{
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix},
+		\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix},
+		\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\right\}
+	.
+\end{equation*}
+\newpage \noindent
+In basis $\mathcal{B}$ the rotation of interest is a $30 \degree$
+counterclockwise rotation about $\hat{v}_1$. \\
+Let ${\{R\}}_{\mathcal{B}}^{\mathcal{B}}$ be the matrix for such a rotation in
+basis $\mathcal{B}$ so that
+\begin{equation*}
+	{\{R\}}_{\mathcal{B}}^{\mathcal{B}}
+	=
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \cos(30 \degree) & -\sin(30 \degree) \\
+		0 & \sin(30 \degree) & \cos(30 \degree)
+	\end{pmatrix}
+	.
+\end{equation*}
+Let ${\{I\}}_{\mathcal{B}}^{\mathcal{S}}$ be the matrix with columns
+$\hat{v}_1$, $\hat{v}_2$, and $\hat{v}_3$ so that
+\begin{equation*}
+	{\{I\}}_{\mathcal{B}}^{\mathcal{S}}
+	=
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+		0 & 0 & -1 \\
+		-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0
+	\end{pmatrix}
+	.
+\end{equation*}
+${\{I\}}_{\mathcal{B}}^{\mathcal{S}}$ can be thought of as the matrix that
+converts an input ${\{\vec{x}\}}_{\mathcal{B}}$ (a vector described in basis
+$\mathcal{B}$) to ${\{\vec{x}\}}_{\mathcal{S}}$ (the same vector but
+described in basis $\mathcal{S}$). \\
+Similarly, let ${\{I\}}_{\mathcal{S}}^{\mathcal{B}}$ be the matrix that
+converts from basis $\mathcal{S}$ to $\mathcal{B}$, so that
+\begin{equation*}
+	{\{I\}}_{\mathcal{S}}^{\mathcal{B}}
+	=
+	{\left( {\{I\}}_{\mathcal{B}}^{\mathcal{S}} \right)}^{-1}
+	=
+	{\left( {\{I\}}_{\mathcal{B}}^{\mathcal{S}} \right)}^{\text{T}}
+	=
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \\
+		\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+		0 & -1 & 0
+	\end{pmatrix}
+	.
+\end{equation*}
+Let ${\{R\}}_{\mathcal{S}}^{\mathcal{S}}$ be the rotation of interest in
+standard basis. \\
+${\{R\}}_{\mathcal{S}}^{\mathcal{S}}$ can be computed as the composition of
+firstly the transformation from basis $\mathcal{S}$ to $\mathcal{B}$, then the
+rotation of interest under basis $\mathcal{B}$, and finally the transformation
+from basis $\mathcal{B}$ back to $\mathcal{S}$:
+\begin{align*}
+	{\{R\}}_{\mathcal{S}}^{\mathcal{S}}
+	&=
+	{{\{I\}}_{\mathcal{B}}^{\mathcal{S}}}
+	\cdot
+	{{\{R\}}_{\mathcal{B}}^{\mathcal{B}}}
+	\cdot
+	{{\{I\}}_{\mathcal{S}}^{\mathcal{B}}}
+	\\
+	&=
+	\boxed{
+		\begin{pmatrix}
+			\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+			0 & 0 & -1 \\
+			-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0
+		\end{pmatrix}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & \cos(30 \degree) & -\sin(30 \degree) \\
+			0 & \sin(30 \degree) & \cos(30 \degree)
+		\end{pmatrix}
+		\begin{pmatrix}
+			\frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \\
+			\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+			0 & -1 & 0
+		\end{pmatrix}
+	}
+	.
+\end{align*}
+
+\section*{2.}
+\textit{Let $\vec{a} = \begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix}$ and
+$\vec{b} = \begin{pmatrix} 0 \\ 3 \\ 4 \end{pmatrix}$. \\
+Find the vector $\vec{v}$ that is $\vec{a}$ rotated $40 \degree$ toward
+$\vec{b}$.} \\[\baselineskip]
+Note that $\vec{a} \cdot \vec{b} = 0$, meaning that the two vectors are
+orthogonal. \\
+A vector $\vec{c}$ in the axis of rotation can be found by computing
+\begin{equation*}
+	\vec{c}
+	=
+	\vec{a} \times \vec{b}
+	=
+	\begin{pmatrix} 0 \\ -20 \\ 15 \end{pmatrix}
+	.
+\end{equation*}
+Let the basis $\mathcal{B}$ be constructed from the triple $\vec{a}$,
+$\vec{b}$, and $\vec{c}$:
+\begin{equation*}
+	\mathcal{B}
+	=
+	\left\{ \vec{a}, \vec{b}, \vec{c} \right\}
+	=
+	\left\{
+		\begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix},
+		\begin{pmatrix} 0 \\ 3 \\ 4 \end{pmatrix},
+		\begin{pmatrix} 0 \\ -20 \\ 15 \end{pmatrix}
+	\right\}
+	.
+\end{equation*}
+Let ${\{R\}}_{\mathcal{B}}^{\mathcal{B}}$ be the matrix for the rotation of
+interest about $\vec{c}$ in basis $\mathcal{B}$:
+\begin{equation*}
+	{\{R\}}_{\mathcal{B}}^{\mathcal{B}}
+	=
+	\begin{pmatrix}
+		\cos(40 \degree) & -\sin(40 \degree) & 0 \\
+		\sin(40 \degree) & \cos(40 \degree) & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+	.
+\end{equation*}
+Using ${\{R\}}_{\mathcal{B}}^{\mathcal{B}}$, 
+\begin{gather*}
+	{\{\vec{v}\}}_{\mathcal{B}}
+	=
+	{\{R\}}_{\mathcal{B}}^{\mathcal{B}}
+	{\{\vec{a}\}}_{\mathcal{B}}
+	=
+	{\{R\}}_{\mathcal{B}}^{\mathcal{B}}
+	\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos(40 \degree) \\
+		\sin(40 \degree) \\
+		0
+	\end{pmatrix}
+	,
+	\\
+	\vec{v}
+	=
+	\cos(40 \degree)
+	\begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix}
+	+
+	\sin(40 \degree)
+	\begin{pmatrix} 0 \\ 3 \\ 4 \end{pmatrix}
+	+
+	0
+	\begin{pmatrix} 0 \\ -20 \\ 15 \end{pmatrix}
+	=
+	\boxed{
+		\begin{pmatrix}
+			5 \cos(40 \degree) \\
+			3 \sin(40 \degree) \\
+			4 \sin(40 \degree)
+		\end{pmatrix}
+	}
+	.
+\end{gather*}
+
+\end{document}
