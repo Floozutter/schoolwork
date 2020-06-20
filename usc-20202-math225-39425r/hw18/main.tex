@@ -1,0 +1,197 @@
+% Preamble.
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+%% Title macros.
+\newcommand{\HOMEWORKNUM}{18}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-06-19}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+%% Formatting options.
+%\pagenumbering{gobble}  % Include for single-page document.
+
+% Macros.
+%% Contextualized by input/output bases.
+\newcommand{\based}[3]{{\{#1\}}_{#2}^{#3}}
+
+% Document.
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{$T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ reflects vectors across
+line $y = \tan(30 \degree)x$ in standard basis.}
+\begin{gather*}
+	\mathcal{A}
+	=
+	\left\{
+		\begin{pmatrix} \cos(20 \degree) \\ \sin(20 \degree) \end{pmatrix},
+		\begin{pmatrix} -\sin(20 \degree) \\ \cos(20 \degree) \end{pmatrix}
+	\right\}
+	\\
+	\mathcal{B}
+	=
+	\left\{
+		\begin{pmatrix} \cos(40 \degree) \\ \sin(40 \degree) \end{pmatrix},
+		\begin{pmatrix} -\sin(40 \degree) \\ \cos(40 \degree) \end{pmatrix}
+	\right\}
+\end{gather*}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Find $\based{T}{\mathcal{A}}{\mathcal{B}}$.}
+	\\[\baselineskip]
+	Let $\mathcal{S}$ be the standard basis. \\
+	In standard basis, $T$ can be expressed by the matrix
+	\begin{equation*}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		=
+		\begin{pmatrix}
+			\cos(60 \degree) & \sin(60 \degree) \\
+			\sin(60 \degree) & -\cos(60 \degree)
+		\end{pmatrix}
+		.
+	\end{equation*}
+	Using $\based{T}{\mathcal{S}}{\mathcal{S}}$,
+	\begin{equation*}
+		\based{T}{\mathcal{A}}{\mathcal{B}}
+		=
+		\based{I}{\mathcal{S}}{\mathcal{B}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{I}{\mathcal{A}}{\mathcal{S}}
+		.
+	\end{equation*}
+	Thus,
+	\footnotesize
+	\begin{equation*}
+		\boxed{
+			\based{T}{\mathcal{A}}{\mathcal{B}}
+			=
+			\begin{pmatrix}
+				\cos(40 \degree) & -\sin(40 \degree) \\
+				\sin(40 \degree) & \cos(40 \degree)
+			\end{pmatrix}
+			^{-1}
+			\begin{pmatrix}
+				\cos(60 \degree) & \sin(60 \degree) \\
+				\sin(60 \degree) & -\cos(60 \degree)
+			\end{pmatrix}
+			\begin{pmatrix}
+				\cos(20 \degree) & -\sin(20 \degree) \\
+				\sin(20 \degree) & \cos(20 \degree)
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+	\normalsize
+	
+	\item \textit{Find $\based{T}{\mathcal{B}}{\mathcal{A}}$.}
+	\begin{equation*}
+		\based{T}{\mathcal{B}}{\mathcal{A}}
+		=
+		\based{I}{\mathcal{S}}{\mathcal{A}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{I}{\mathcal{B}}{\mathcal{S}}
+		.
+	\end{equation*}
+	Thus,
+	\footnotesize
+	\begin{equation*}
+		\boxed{
+			\based{T}{\mathcal{B}}{\mathcal{A}}
+			=
+			\begin{pmatrix}
+				\cos(20 \degree) & -\sin(20 \degree) \\
+				\sin(20 \degree) & \cos(20 \degree)
+			\end{pmatrix}
+			^{-1}
+			\begin{pmatrix}
+				\cos(60 \degree) & \sin(60 \degree) \\
+				\sin(60 \degree) & -\cos(60 \degree)
+			\end{pmatrix}
+			\begin{pmatrix}
+				\cos(40 \degree) & -\sin(40 \degree) \\
+				\sin(40 \degree) & \cos(40 \degree)
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+	\normalsize
+	
+	\item \textit{Find $\based{T}{\mathcal{A}}{\mathcal{A}}$.}
+	\begin{equation*}
+		\based{T}{\mathcal{A}}{\mathcal{A}}
+		=
+		\based{I}{\mathcal{S}}{\mathcal{A}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{I}{\mathcal{A}}{\mathcal{S}}
+		.
+	\end{equation*}
+	Thus,
+	\footnotesize
+	\begin{equation*}
+		\boxed{
+			\based{T}{\mathcal{A}}{\mathcal{A}}
+			=
+			\begin{pmatrix}
+				\cos(20 \degree) & -\sin(20 \degree) \\
+				\sin(20 \degree) & \cos(20 \degree)
+			\end{pmatrix}
+			^{-1}
+			\begin{pmatrix}
+				\cos(60 \degree) & \sin(60 \degree) \\
+				\sin(60 \degree) & -\cos(60 \degree)
+			\end{pmatrix}
+			\begin{pmatrix}
+				\cos(20 \degree) & -\sin(20 \degree) \\
+				\sin(20 \degree) & \cos(20 \degree)
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+	\normalsize
+	
+	\item \textit{Find $\based{T}{\mathcal{B}}{\mathcal{B}}$.}
+	\begin{equation*}
+		\based{T}{\mathcal{B}}{\mathcal{B}}
+		=
+		\based{I}{\mathcal{S}}{\mathcal{B}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{I}{\mathcal{B}}{\mathcal{S}}
+		.
+	\end{equation*}
+	Thus,
+	\footnotesize
+	\begin{equation*}
+		\boxed{
+			\based{T}{\mathcal{B}}{\mathcal{B}}
+			=
+			\begin{pmatrix}
+				\cos(40 \degree) & -\sin(40 \degree) \\
+				\sin(40 \degree) & \cos(40 \degree)
+			\end{pmatrix}
+			^{-1}
+			\begin{pmatrix}
+				\cos(60 \degree) & \sin(60 \degree) \\
+				\sin(60 \degree) & -\cos(60 \degree)
+			\end{pmatrix}
+			\begin{pmatrix}
+				\cos(40 \degree) & -\sin(40 \degree) \\
+				\sin(40 \degree) & \cos(40 \degree)
+			\end{pmatrix}
+		}
+		.
+	\end{equation*}
+	\normalsize
+\end{enumerate}
+
+\end{document}
