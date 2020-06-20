@@ -63,8 +63,8 @@ WHERE track_id = @@IDENTITY;  -- Spooky.
 -- 4. Delete track "20 Flight Rock" by BackBeat (artist) from the database.
 DELETE FROM tracks
 WHERE name = '20 Flight Rock';  -- Also spooky.
--- What if the record was referenced by a foreign key?
 -- What if multiple records matched the clause?
+-- What if a record referenced by a foreign key was deleted?
 
 -- 5. Display how many tracks there are for each album. Show album ID, album
 -- title, (album_title), and track count (track_count).
