@@ -31,12 +31,40 @@ SELECT * FROM mpeg_tracks;
 --   7. Milliseconds: 248000
 --   8. Bytes: 7990000
 --   9. Unit Price: 0.99
+INSERT INTO tracks (
+	name,
+	album_id,
+	media_type_id,
+	genre_id,
+	composer,
+	milliseconds,
+	bytes,
+	unit_price
+) VALUES (
+	'The Ocean',
+	137,
+	1,
+	1,
+	'John Bonham,John Paul Jones, Robert Plant',
+	248000,
+	7990000,
+	0.99
+);
 
 -- 3. Make the following changes to the track added above in (2.):
 --   1. New Bytes: 8998765
 --   2. New Unit Price: 1.99
+UPDATE tracks
+SET
+	bytes = 8998764,
+	unit_price = 1.99
+WHERE track_id = @@IDENTITY;  -- Spooky.
 
 -- 4. Delete track "20 Flight Rock" by BackBeat (artist) from the database.
+DELETE FROM tracks
+WHERE name = '20 Flight Rock';  -- Also spooky.
+-- What if the record was referenced by a foreign key?
+-- What if multiple records matched the clause?
 
 -- 5. Display how many tracks there are for each album. Show album ID, album
 -- title, (album_title), and track count (track_count).
