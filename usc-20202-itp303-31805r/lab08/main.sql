@@ -68,3 +68,12 @@ WHERE name = '20 Flight Rock';  -- Also spooky.
 
 -- 5. Display how many tracks there are for each album. Show album ID, album
 -- title, (album_title), and track count (track_count).
+SELECT
+	albums.album_id,
+	albums.title AS album_title,
+	COUNT(tracks.album_id) AS track_count
+FROM
+	tracks
+	LEFT JOIN albums
+		ON tracks.album_id = albums.album_id
+GROUP BY tracks.album_id;
