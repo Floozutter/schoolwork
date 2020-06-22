@@ -16,7 +16,7 @@
 	
 	<div class="container">
 
-		<form action="" method="" class="mt-3">
+		<form action="submit_form.php" method="POST" class="mt-3">
 
 			<div class="form-group row">
 				<label for="fname-id" class="col-sm-3 col-form-label text-sm-right">First Name:</label>
@@ -89,25 +89,25 @@
 				<div class="col-sm-9">
 					<div class="form-check form-check-inline">
 						<label class="form-check-label">
-							<input type="checkbox" name="flavor" class="form-check-input mr-2" value="vanilla">
+							<input type="checkbox" name="flavor[]" class="form-check-input mr-2" value="vanilla">
 							Vanilla
 						</label>
 					</div> <!-- .form-check -->
 					<div class="form-check form-check-inline">
 						<label class="form-check-label">
-							<input type="checkbox" name="flavor" class="form-check-input mr-2" value="caramel">
+							<input type="checkbox" name="flavor[]" class="form-check-input mr-2" value="caramel">
 							Caramel
 						</label>
 					</div> <!-- .form-check -->
 					<div class="form-check form-check-inline">
 						<label class="form-check-label">
-							<input type="checkbox" name="flavor" class="form-check-input mr-2" value="hazelnut">
+							<input type="checkbox" name="flavor[]" class="form-check-input mr-2" value="hazelnut">
 							Hazelnut
 						</label>
 					</div> <!-- .form-check -->
 					<div class="form-check form-check-inline">
 						<label class="form-check-label">
-							<input type="checkbox" name="flavor" class="form-check-input mr-2" value="pumpkin-spice">
+							<input type="checkbox" name="flavor[]" class="form-check-input mr-2" value="pumpkin-spice">
 							Pumpkin Spice
 						</label>
 					</div> <!-- .form-check -->
