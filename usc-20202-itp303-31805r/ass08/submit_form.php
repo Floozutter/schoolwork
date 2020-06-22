@@ -1,6 +1,6 @@
 <?php
 	function missing_POST($key) {
-		return !isset($_POST['fname']) || empty($_POST['fname']);
+		return !isset($_POST[$key]) || empty($_POST[$key]);
 	}
 
 	# Form submission messages.
