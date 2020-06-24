@@ -4,6 +4,7 @@
 		echo "$errtype $errno: $errmsg";
 		exit;
 	}
+	
 	function print_options($mysqli_result, $val_key, $text_key) {
 		while ($row = $mysqli_result->fetch_assoc()) {
 			echo '<option value="' . $row[$val_key] . '">';
