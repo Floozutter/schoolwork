@@ -1,7 +1,40 @@
 <?php
+	function panic($errtype, $errno, $errmsg) {
+		echo 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!';
+		echo "$errtype $errno: $errmsg";
+		exit;
+	}
+	function print_options($mysqli_result, $val_key, $text_key) {
+		while ($row = $mysqli_result->fetch_assoc()) {
+			echo '<option value="' . $row[$val_key] . '">';
+			echo $row[$text_key];
+			echo '</option>';
+		}
+	}		
 
-	// TODO: Establish DB connection, submit SQL query here. Remember to check for any MySQLi errors.
+	// Connect to database.
+	$mysqli = new mysqli(
+		'303.itpwebdev.com',
+		'dchoi933_uwu',
+		'0x4BE71AF2459CF83899EC9DC2CB60E22AC4B3047E0211034BBABE9D174C069DD6',
+		'dchoi933_football_schedule_db'
+	);
+	if ($mysqli->connect_errno) { panic('MySQL Connection Error', $mysqli->connect_errno, $mysqli->connect_error); }
+	
+	// Query teams.
+	$teams = $mysqli->query('SELECT * FROM teams;');
+	if (!$teams) { panic('MySQL Query Error', $mysqli->errno, $mysqli->error); }
+	
+	// Query venues.
+	$venues = $mysqli->query('SELECT * FROM venues;');
+	if (!$venues) { panic('MySQL Query Error', $mysqli->errno, $mysqli->error); }
 
+	// Query days.
+	$days = $mysqli->query('SELECT * FROM days;');
+	if (!$days) { panic('MySQL Query Error', $mysqli->errno, $mysqli->error); }
+	
+	// Close connection.
+	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +57,8 @@
 				<div class="col-sm-9">
 					<select name="team_id" id="team" class="form-control">
 						<option value="" selected>-- All --</option>
-
 						<!-- TODO: Output all teams from the DB here. -->
+						<?=print_options($teams, 'id', 'team')?>
 
 					</select>
 				</div>
@@ -35,8 +68,8 @@
 				<div class="col-sm-9">
 					<select name="venue_id" id="venue" class="form-control">
 						<option value="" selected>-- All --</option>
-
 						<!-- TODO: Output all venues from the DB here. -->
+						<?=print_options($venues, 'id', 'venue')?>
 
 					</select>
 				</div>
@@ -46,8 +79,8 @@
 				<div class="col-sm-9">
 					<select name="day_id" id="day" class="form-control">
 						<option value="" selected>-- All --</option>
-
 						<!-- TODO: Output all days from the DB here. -->
+						<?=print_options($days, 'id', 'day')?>
 
 					</select>
 				</div>
