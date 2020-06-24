@@ -1,6 +1,6 @@
 <?php
 	function panic($errtype, $errno, $errmsg) {
-		echo 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!';
+		echo 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!', '</br>';
 		echo "$errtype $errno: $errmsg";
 		exit;
 	}
@@ -58,8 +58,7 @@
 				<div class="col-sm-9">
 					<select name="team_id" id="team" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- TODO: Output all teams from the DB here. -->
-						<?=print_options($teams, 'id', 'team')?>
+						<?php print_options($teams, 'id', 'team'); ?>
 
 					</select>
 				</div>
@@ -69,8 +68,7 @@
 				<div class="col-sm-9">
 					<select name="venue_id" id="venue" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- TODO: Output all venues from the DB here. -->
-						<?=print_options($venues, 'id', 'venue')?>
+						<?php print_options($venues, 'id', 'venue'); ?>
 
 					</select>
 				</div>
@@ -80,8 +78,7 @@
 				<div class="col-sm-9">
 					<select name="day_id" id="day" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- TODO: Output all days from the DB here. -->
-						<?=print_options($days, 'id', 'day')?>
+						<?php print_options($days, 'id', 'day'); ?>
 
 					</select>
 				</div>
