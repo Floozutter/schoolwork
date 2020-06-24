@@ -90,7 +90,6 @@
 		</div> <!-- .row -->
 		<div class="row">
 			<div class="col-12">
-				<!-- TODO: Replace '1' with actual number of results -->
 				Showing <?=$results->num_rows?> result(s).
 			</div> <!-- .col -->
 			<div class="col-12">
@@ -105,7 +104,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- TODO: Loop through DB results and output them here. Modify or remove hard-coded output below. -->
 						<?php print_results($results); ?>
 
 					</tbody>
