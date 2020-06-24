@@ -27,10 +27,113 @@
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{Suppose that $A$ and its reduced row echelon form are}
 \begin{equation*}
-	\pi \approx e
+	A
+	=
+	\begin{pmatrix}
+		0 & 2 & 0 & -4 & 0 & 6 \\
+		0 & -4 & -1 & 7 & 0 & -16 \\
+		0 & 6 & 0 & -12 & 3 & 15 \\
+		0 & 4 & -1 & -9 & 0 & 8
+	\end{pmatrix}
+	\sim
+	\begin{pmatrix}
+		0 & 1 & 0 & -2 & 0 & 3 \\
+		0 & 0 & 1 & 1 & 0 & 4 \\
+		0 & 0 & 0 & 0 & 1 & -1 \\
+		0 & 0 & 0 & 0 & 0 & 0
+	\end{pmatrix}
 \end{equation*}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{The null space $\text{nul}(A)$ is a subspace of
+	$\mathbb{R}^p$ for what $p$? The column space $\text{col}(A)$ is a
+	subspace of $\mathbb{R}^p$ for what $p$?} \\[\baselineskip]
+	The null space (kernel) is a subspace of the domain,
+	$\boxed{\mathbb{R}^6}$, where $6$ is the number of columns of $A$. \\
+	The column space (image) is a subspace of the codomain,
+	$\boxed{\mathbb{R}^4}$, where $4$ is the number of rows of $A$.
+	
+	\item \textit{What are the dimensions $\text{dim}(\text{nul}(A))$ and
+	$\text{dim}(\text{col}(A))$?} \\[\baselineskip]
+	$A$ has a nullity of $\boxed{3}$, because its RREF has $3$ free variables.
+	\\
+	$A$ has a rank of $\boxed{3}$, because its RREF has $3$ leading variables
+	(nonzero rows). \\
+	This result can be verified using the rank-nullity theorem:
+	\begin{align*}
+		\text{dim}(\text{col}(A)) + \text{dim}(\text{nul}(A))
+		&=
+		\text{dim}(\text{domain}(A))
+		\\
+		\text{rank}(A) + \text{nullity}(A)
+		&=
+		\text{number of columns of } A
+		\\
+		3 + 3
+		&=
+		6
+	\end{align*}
+	
+	\item \textit{Find a basis for the column space $\text{col}(A)$.}
+	\\[\baselineskip]
+	The columns of $A$ that correspond to the columns that contain leading
+	variables in $\text{rref}(A)$,
+	\begin{equation*}
+		\boxed{
+			\left\{
+				\begin{pmatrix} 2 \\ -4 \\ 6 \\ 4 \end{pmatrix},
+				\begin{pmatrix} 0 \\ -1 \\ 0 \\ -1 \end{pmatrix},
+				\begin{pmatrix} 0 \\ 0 \\ 3 \\ 0 \end{pmatrix}
+			\right\}
+		}
+		,
+	\end{equation*}
+	form a basis for the image of $A$. \\[\baselineskip]
+	Alternatively, the nonzero rows of $\text{rref}(A^\text{T})$ also form a
+	basis for the image of $A$.
+	Because
+	\begin{equation*}
+		\text{rref}(A^\text{T})
+		=
+		\begin{pmatrix}
+			1 & 0 & 0 & 4 \\
+			0 & 1 & 0 & 1 \\
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0
+		\end{pmatrix}
+		,
+	\end{equation*}
+	another valid basis is
+	\begin{equation*}
+		\boxed{
+			\left\{
+				\begin{pmatrix} 1 \\ 0 \\ 0 \\ 4 \end{pmatrix},
+				\begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \end{pmatrix},
+				\begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}
+			\right\}
+		}
+		.
+	\end{equation*}
+	This basis can be shown to span the same subspace as the first basis by
+	row reducing the matrix with rows that are the first basis's vectors:
+	\begin{equation*}
+		\text{rref}
+			\begin{pmatrix}
+				2 & -4 & 6 & 4 \\
+				0 & -1 & 0 & -1 \\
+				0 & 0 & 3 & 0
+			\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 0 & 0 & 4 \\
+			0 & 1 & 0 & 1 \\
+			0 & 0 & 1 & 0 \\
+		\end{pmatrix}
+		.
+	\end{equation*}
+\end{enumerate}
 
 \end{document}
