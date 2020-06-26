@@ -27,10 +27,77 @@
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{For the following matrices, find the eigenvectors and associated
+eigenvalues by thinking geometrically about the corresponding matrix
+transformation.} \\[\baselineskip]
+\begin{enumerate}[label=(\alph*)]
+	\item $\begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix}$. \\[\baselineskip]
+	This matrix transformation is equivalent to scaling a vector by $3$:
+	\begin{equation*}
+		\begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix}
+		\vec{v}
+		=
+		3 \vec{v}
+		.
+	\end{equation*}
+	Thus, every nonzero vector is an eigenvector of this matrix. Their
+	corresponding eigenvalue is \boxed{3}.
+	
+	\item $\begin{pmatrix} -2 & 0 \\ 0 & 4 \end{pmatrix}$. \\[\baselineskip]
+	This matrix transformation is equivalent to scaling a vector's first
+	component by $-2$ and its second component by $4$.
+	\begin{equation*}
+		\begin{pmatrix} -2 & 0 \\ 0 & 4 \end{pmatrix}
+		\begin{pmatrix} x \\ y \end{pmatrix}
+		=
+		\begin{pmatrix} -2x \\ 4y \end{pmatrix}
+		.
+	\end{equation*}
+	Thus, nonzero vectors in the form of
+	$\begin{pmatrix} n \\ 0 \end{pmatrix}$ are eigenvectors of this matrix,
+	with a corresponding eigenvalue of \boxed{-2}, and nonzero vectors in the
+	form of $\begin{pmatrix} 0 \\ n \end{pmatrix}$ are eigenvectors of this
+	matrix, with a corresponding eigenvalue of \boxed{4}.
+	
+	\item \textit{The identity matrix.} \\[\baselineskip]
+	The identity transformation is equivalent to scaling a vector by $1$:
+	\begin{equation*}
+		I \vec{v} = 1 \vec{v}.
+	\end{equation*}
+	Thus, every nonzero vector is an eigenvector of the identity matrix. Their
+	corresponding eigenvalue is \boxed{1}.
+	
+	\item \textit{A diagonal matrix with distinct diagonal entries.}
+	\\[\baselineskip]
+	This matrix transformation is equivalent to scaling a vector's entries
+	each by their corresponding diagonal entry. \\
+	Thus, such a matrix's eigenvectors are scalar multiples of the standard
+	basis vectors. Each eigenvector's corresponding diagonal entry is their
+	corresponding eigenvalue.
+\end{enumerate}
+
+\section*{2.}
+\textit{Suppose that $A$ is a $2 \times 2$ matrix having eigenvectors}
 \begin{equation*}
-	\pi \approx e
+	\vec{v}_1 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}, \quad
+	\vec{v}_2 = \begin{pmatrix} -1 \\ 2 \end{pmatrix}
 \end{equation*}
+\textit{and associated eigenvalues $\lambda_1 = 2$, $\lambda_2 = -3$. If
+$\vec{x} = \begin{pmatrix} 5 \\ 0 \end{pmatrix}$, find the vector
+$A^4 \vec{x}$.}
+
+\section*{3.}
+\textit{Determine whether the following statements are true or false and
+provide a justification for your response.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{The eigenvalues of a diagonal matrix are equal to the
+	entries on the diagonal.}
+	\item \textit{If $A v = \lambda v$, then $A^2 v = \lambda v$ as well.}
+	\item \textit{Every vector is an eigenvector of the identity matrix.}
+	\item \textit{If $\lambda = 0$ is an eigenvalue of $A$, then $A$ is
+	invertible.}
+	\item \textit{For every $n \times n$ matrix $A$, it is possible to find
+	a basis of $\mathbb{R}^n$ consisting of eigenvectors of $A$.}
+\end{enumerate}
 
 \end{document}
