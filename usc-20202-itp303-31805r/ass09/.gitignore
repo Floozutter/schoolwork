@@ -1,4 +1,5 @@
 # pdflatex stuff
 *.aux
 *.log
+*.out
 *.pdf
