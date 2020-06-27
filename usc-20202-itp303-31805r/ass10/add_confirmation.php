@@ -1,15 +1,25 @@
 <?php
+	function missing_POST($key) {
+		return !isset($_POST[$key]) || empty($_POST[$key]);
+	}
 	function null_fallback_POST($key) {
 		return (
-			(isset($_POST[$key]) && !empty($_POST[$key]))
-			? $_POST[$key]
-			: 'NULL'
+			missing_POST($key)
+			? 'NULL'
+			: $_POST[$key]
+		);
+	}
+	function null_fallback_quoted_POST($key) {
+		return (
+			missing_POST($key)
+			? 'NULL'
+			: '\'' . $_POST[$key] . '\''
 		);
 	}
 	
 	function attempt() {
 		// Guarantee title exists.
-		if (!isset($_POST['title']) || empty($_POST['title'])) {
+		if (missing_POST('title')) {
 			return '<div class="text-danger font-italic">Missing title!</div>';
 		}
 		
@@ -25,9 +35,9 @@
 		}
 		
 		// Get POST values.
-		$title = null_fallback_POST('title');
-		$release_date = null_fallback_POST('release_date');
-		$award = null_fallback_POST('award');
+		$title = null_fallback_quoted_POST('title');
+		$release_date = null_fallback_quoted_POST('release_date');
+		$award = null_fallback_quoted_POST('award');
 		$label_id = null_fallback_POST('label_id');
 		$sound_id = null_fallback_POST('sound_id');
 		$genre_id = null_fallback_POST('genre_id');
@@ -46,9 +56,9 @@
 			' 	rating_id,' .
 			' 	format_id' .
 			' ) VALUES (' .
-			" 	'$title'," .
-			" 	'$release_date'," .
-			" 	'$award'," .
+			" 	$title," .
+			" 	$release_date," .
+			" 	$award," .
 			" 	$label_id," .
 			" 	$sound_id," .
 			" 	$genre_id," .
@@ -58,7 +68,7 @@
 		);
 		$results = $mysqli->query($query);
 		if (!$results) {
-			return '<div class="text-danger font-italic">Query error!</div>';
+			return '<div class="text-danger font-italic">Query error! ' . $query . '</div>';
 		}
 		
 		// Return success message.
