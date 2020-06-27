@@ -1,3 +1,72 @@
+<?php
+	function null_fallback_POST($key) {
+		return (
+			(isset($_POST[$key]) && !empty($_POST[$key]))
+			? $_POST[$key]
+			: 'NULL'
+		);
+	}
+	
+	function attempt() {
+		// Guarantee title exists.
+		if (!isset($_POST['title']) || empty($_POST['title'])) {
+			return '<div class="text-danger font-italic">Missing title!</div>';
+		}
+		
+		// Connect to database.
+		$mysqli = new mysqli(
+			'303.itpwebdev.com',
+			'dchoi933_uwu',
+			'0x4BE71AF2459CF83899EC9DC2CB60E22AC4B3047E0211034BBABE9D174C069DD6',
+			'dchoi933_dvd_db'
+		);
+		if ($mysqli->connect_errno) {
+			return '<div class="text-danger font-italic">Connect error!</div>';
+		}
+		
+		// Get POST values.
+		$title = null_fallback_POST('title');
+		$release_date = null_fallback_POST('release_date');
+		$award = null_fallback_POST('award');
+		$label_id = null_fallback_POST('label_id');
+		$sound_id = null_fallback_POST('sound_id');
+		$genre_id = null_fallback_POST('genre_id');
+		$rating_id = null_fallback_POST('rating_id');
+		$format_id = null_fallback_POST('format_id');
+		
+		// Query.
+		$query = (
+			' INSERT INTO dvd_titles (' .
+			' 	title,' .
+			' 	release_date,' .
+			' 	award,' .
+			' 	label_id,' .
+			' 	sound_id,' .
+			' 	genre_id,' .
+			' 	rating_id,' .
+			' 	format_id' .
+			' ) VALUES (' .
+			" 	'$title'," .
+			" 	'$release_date'," .
+			" 	'$award'," .
+			" 	$label_id," .
+			" 	$sound_id," .
+			" 	$genre_id," .
+			" 	$rating_id," .
+			" 	$format_id" .
+			' );'
+		);
+		$results = $mysqli->query($query);
+		if (!$results) {
+			return '<div class="text-danger font-italic">Query error!</div>';
+		}
+		
+		// Return success message.
+		return '<div class="text-success"><span class="font-italic">' . $title . '</span> was successfully added.</div>';
+	}
+	
+	$msg = attempt();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +89,7 @@
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-12">
-
-				<div class="text-danger font-italic">Display Errors Here</div>
-
-				<div class="text-success"><span class="font-italic">Display Title Here</span> was successfully added.</div>
+			<?=$msg?>
 
 			</div> <!-- .col -->
 		</div> <!-- .row -->
