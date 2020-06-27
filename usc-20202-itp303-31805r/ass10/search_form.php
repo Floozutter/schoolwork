@@ -82,7 +82,6 @@
 				<div class="col-sm-9">
 					<select name="genre" id="genre-id" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- Genre dropdown options here -->
 						<?php print_options($genres, 'genre_id', 'genre'); ?>
 
 					</select>
@@ -93,7 +92,6 @@
 				<div class="col-sm-9">
 					<select name="rating" id="rating-id" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- Rating dropdown options here -->
 						<?php print_options($ratings, 'rating_id', 'rating'); ?>
 
 					</select>
@@ -104,7 +102,6 @@
 				<div class="col-sm-9">
 					<select name="label" id="label-id" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- Label dropdown options here -->
 						<?php print_options($labels, 'label_id', 'label'); ?>
 
 					</select>
@@ -115,7 +112,6 @@
 				<div class="col-sm-9">
 					<select name="format" id="format-id" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- Format dropdown options here -->
 						<?php print_options($formats, 'format_id', 'format'); ?>
 
 					</select>
@@ -126,7 +122,6 @@
 				<div class="col-sm-9">
 					<select name="sound" id="sound-id" class="form-control">
 						<option value="" selected>-- All --</option>
-						<!-- Sound dropdown options here -->
 						<?php print_options($sounds, 'sound_id', 'sound'); ?>
 
 					</select>

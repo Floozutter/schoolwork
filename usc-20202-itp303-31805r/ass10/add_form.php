@@ -93,7 +93,6 @@
 				<div class="col-sm-9">
 					<select name="label_id" id="label-id" class="form-control">
 						<option value="" selected disabled>-- Select One --</option>
-						<!-- PHP Output Here -->
 						<?php print_options($labels, 'label_id', 'label'); ?>
 
 					</select>
@@ -105,7 +104,6 @@
 				<div class="col-sm-9">
 					<select name="sound_id" id="sound-id" class="form-control">
 						<option value="" selected disabled>-- Select One --</option>
-						<!-- PHP Output Here -->
 						<?php print_options($sounds, 'sound_id', 'sound'); ?>
 
 					</select>
@@ -117,7 +115,6 @@
 				<div class="col-sm-9">
 					<select name="genre_id" id="genre-id" class="form-control">
 						<option value="" selected disabled>-- Select One --</option>
-						<!-- PHP Output Here -->
 						<?php print_options($genres, 'genre_id', 'genre'); ?>
 
 					</select>
@@ -129,7 +126,6 @@
 				<div class="col-sm-9">
 					<select name="rating_id" id="rating-id" class="form-control">
 						<option value="" selected disabled>-- Select One --</option>
-						<!-- PHP Output Here -->
 						<?php print_options($ratings, 'rating_id', 'rating'); ?>
 
 					</select>
@@ -141,7 +137,6 @@
 				<div class="col-sm-9">
 					<select name="format_id" id="format-id" class="form-control">
 						<option value="" selected disabled>-- Select One --</option>
-						<!-- PHP Output Here -->
 						<?php print_options($formats, 'format_id', 'format'); ?>
 
 					</select>
