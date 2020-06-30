@@ -12,6 +12,7 @@
 	function print_results($mysqli_result) {
 		while ($row = $mysqli_result->fetch_assoc()) {
 			echo '<tr>';
+			echo	'<td><a href="./delete.php?dvd_title_id=' . $row['dvd_title_id'] . '" class="btn btn-outline-danger" onclick="return confirm(\'You are about to delete DVD ' . $row['title'] . '.\');">Delete</a></td>';
 			echo 	'<td><a href="./details.php?dvd_title_id=' . $row['dvd_title_id'] . '">' . $row['title'] . '</a></td>';
 			echo 	'<td>' . $row['release_date'] . '</td>';
 			echo 	'<td>' . $row['genre'] . '</td>';
@@ -122,6 +123,7 @@
 				<table class="table table-hover table-responsive mt-4">
 					<thead>
 						<tr>
+							<th></th>
 							<th>DVD Title</th>
 							<th>Release Date</th>
 							<th>Genre</th>
