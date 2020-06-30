@@ -108,7 +108,7 @@
 			<div class="form-group row">
 				<label for="label-id" class="col-sm-3 col-form-label text-sm-right">Label:</label>
 				<div class="col-sm-9">
-					<select name="label" id="label-id" class="form-control">
+					<select name="label_id" id="label-id" class="form-control">
 						<option value="">-- Select One --</option>
 						<?php print_options($labels, 'label_id', 'label', $dvd); ?>
 
@@ -119,7 +119,7 @@
 			<div class="form-group row">
 				<label for="sound-id" class="col-sm-3 col-form-label text-sm-right">Sound:</label>
 				<div class="col-sm-9">
-					<select name="sound" id="sound-id" class="form-control">
+					<select name="sound_id" id="sound-id" class="form-control">
 						<option value="">-- Select One --</option>
 						<?php print_options($sounds, 'sound_id', 'sound', $dvd); ?>
 
@@ -130,7 +130,7 @@
 			<div class="form-group row">
 				<label for="genre-id" class="col-sm-3 col-form-label text-sm-right">Genre:</label>
 				<div class="col-sm-9">
-					<select name="genre" id="genre-id" class="form-control">
+					<select name="genre_id" id="genre-id" class="form-control">
 						<option value="">-- Select One --</option>
 						<?php print_options($genres, 'genre_id', 'genre', $dvd); ?>
 
@@ -141,7 +141,7 @@
 			<div class="form-group row">
 				<label for="rating-id" class="col-sm-3 col-form-label text-sm-right">Rating:</label>
 				<div class="col-sm-9">
-					<select name="rating" id="rating-id" class="form-control">
+					<select name="rating_id" id="rating-id" class="form-control">
 						<option value="">-- Select One --</option>
 						<?php print_options($ratings, 'rating_id', 'rating', $dvd); ?>
 
@@ -152,7 +152,7 @@
 			<div class="form-group row">
 				<label for="format-id" class="col-sm-3 col-form-label text-sm-right">Format:</label>
 				<div class="col-sm-9">
-					<select name="format" id="format-id" class="form-control">
+					<select name="format_id" id="format-id" class="form-control">
 						<option value="">-- Select One --</option>
 						<?php print_options($formats, 'format_id', 'format', $dvd); ?>
 						
