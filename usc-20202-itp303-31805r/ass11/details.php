@@ -22,6 +22,7 @@
 		// Query.
 		$results = $mysqli->query(
 			' SELECT' .
+			' 	dvd_titles.dvd_title_id,' .
 			' 	dvd_titles.title,' .
 			' 	dvd_titles.release_date,' .
 			' 	dvd_titles.award,' .
@@ -122,6 +123,7 @@
 		<div class="row mt-4 mb-4">
 			<div class="col-12">
 				<a href="search_results.php" role="button" class="btn btn-primary">Back to Search Results</a>
+				<a href="edit_form.php?dvd_title_id=<?=$dvd['dvd_title_id']?>" class="btn btn-warning">Edit This DVD</a>
 			</div> <!-- .col -->
 		</div> <!-- .row -->
 	</div> <!-- .container -->
