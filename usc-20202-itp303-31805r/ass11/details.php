@@ -9,6 +9,10 @@
 		return isset($_GET[$key]) && !empty($_GET[$key]);
 	}
 	
+	function format_for_null($str) {
+		return (empty($str) ? '<span class="font-italic">NULL</span>' : $str);
+	}
+	
 	if (exists_GET('dvd_title_id')) {
 		// Connect to database.
 		$mysqli = new mysqli(
@@ -87,35 +91,35 @@
 				<table class="table table-responsive">
 					<tr>
 						<th class="text-right">Title:</th>
-						<td><?=$dvd['title']?></td>
+						<td><?=format_for_null($dvd['title'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Release Date:</th>
-						<td><?=$dvd['release_date']?></td>
+						<td><?=format_for_null($dvd['release_date'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Genre:</th>
-						<td><?=$dvd['genre']?></td>
+						<td><?=format_for_null($dvd['genre'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Label:</th>
-						<td><?=$dvd['label']?></td>
+						<td><?=format_for_null($dvd['label'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Rating:</th>
-						<td><?=$dvd['rating']?></td>
+						<td><?=format_for_null($dvd['rating'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Sound:</th>
-						<td><?=$dvd['sound']?></td>
+						<td><?=format_for_null($dvd['sound'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Format:</th>
-						<td><?=$dvd['format']?></td>
+						<td><?=format_for_null($dvd['format'])?></td>
 					</tr>
 					<tr>
 						<th class="text-right">Award:</th>
-						<td><?=$dvd['award']?></td>
+						<td><?=format_for_null($dvd['award'])?></td>
 					</tr>
 				</table>
 			</div> <!-- .col -->
