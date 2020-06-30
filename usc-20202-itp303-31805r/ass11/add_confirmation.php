@@ -99,7 +99,7 @@
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-12">
-			<?=$msg?>
+				<?=$msg?>
 
 			</div> <!-- .col -->
 		</div> <!-- .row -->
