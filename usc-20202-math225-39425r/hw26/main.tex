@@ -27,10 +27,87 @@
 \maketitle
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
+\textit{Verify that}
 \begin{equation*}
-	\pi \approx e
+	y = C_1 e^x + C_2 x e^x
 \end{equation*}
+\textit{is a solution to the differential equation}
+\begin{equation*}
+	y^{\prime\prime} - 2y^\prime + y = 0
+	.
+\end{equation*}
+First, find $y^\prime$ and $y^{\prime\prime}$.
+\begin{align*}
+	y &= C_1 e^x + C_2 e^x x, \\
+	y^\prime &= C_1 e^x + C_2 e^x x + C_2 e^x, \\
+	y^{\prime\prime} &= C_1 e^x + C_2 e^x x + 2C_2 e^x.
+\end{align*}
+Substitute the right-hand sides into the equation.
+\begin{gather*}
+	0 \overset{?}{=}
+	y^{\prime\prime} - 2y^\prime + y
+	\\
+	0 \overset{?}{=}
+	(C_1 e^x + C_2 e^x x + 2C_2 e^x)
+	- 2(C_1 e^x + C_2 e^x x + C_2 e^x)
+	+ (C_1 e^x + C_2 e^x x)
+	\\
+	0 \overset{?}{=}
+	(2 - 2)(C_1 e^x)
+	+
+	(2 - 2)(C_2 e^x x)
+	+
+	(2 - 2)(C_2 e^x)
+	\\
+	0 =
+	0
+	.
+\end{gather*}
+
+\section*{2.}
+Verify the solution to the differential equation.
+\begin{enumerate}[label=(\alph*)]
+	\item
+	\textit{Equation: $y^\prime = 2x$.}
+	\textit{Solution: $y = x^2$.}
+	\begin{equation*}
+		y^\prime = \frac{d}{dx} y = \frac{d}{dx} x^2 = 2x.
+	\end{equation*}
+	\newpage
+	
+	\item
+	\textit{Equation: $y^\prime + 3y = 6x + 11$.}
+	\textit{Solution: $y = e^{-3x} + 2x + 3$.}
+	\begin{equation*}
+		y^\prime = -3e^{-3x} + 2.
+	\end{equation*}
+	Thus,
+	\begin{gather*}
+		6x + 11 \overset{?}{=} y^\prime + 3y \\
+		6x + 11 \overset{?}{=} (-3e^{-3x} + 2) + 3(e^{-3x} + 2x + 3) \\
+		6x + 11 \overset{?}{=} (3 - 3)(e^{-3x}) + 3(2x) + 3(3) + 2 \\
+		6x + 11 = 6x + 11.
+	\end{gather*}
+	
+	\item
+	\textit{Equation: $y^{\prime\prime} - 3y^\prime + 2y = 24e^{-2x}$.}
+	\textit{Solution: $y = 3e^x - 4e^{2x} + 2e^{-2x}$.}
+	\begin{align*}
+		y &= 3e^x - 4e^{2x} + 2e^{-2x}, \\
+		y^\prime &= 3e^x - 8e^{2x} - 4e^{-2x}, \\
+		y^{\prime\prime} &= 3e^x - 16e^{2x} + 8e^{-2x}.
+	\end{align*}
+	Thus,
+	\begin{align*}
+		24e^{-2x} &\overset{?}{=} y^{\prime\prime} - 3y^\prime + 2y \\
+		24e^{-2x} &\overset{?}{=}
+		(3e^x - 16e^{2x} + 8e^{-2x}) \\
+		&\quad - 3(3e^x - 8e^{2x} - 4e^{-2x}) \\
+		&\quad + 2(3e^x - 4e^{2x} + 2e^{-2x}) \\
+		24e^{-2x} &\overset{?}{=}
+		(3 - 9 + 6)(e^x) + (-16 + 24 - 8)(e^{2x}) + (8 + 12 + 4)(e^{-2x}) \\
+		24e^{-2x} &= 24e^{2x}.
+	\end{align*}
+\end{enumerate}
 
 \end{document}
