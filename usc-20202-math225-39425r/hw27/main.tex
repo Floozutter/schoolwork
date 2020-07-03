@@ -1,0 +1,125 @@
+% Preamble.
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+%% Title macros.
+\newcommand{\HOMEWORKNUM}{27}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-07-02}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Homework \#\HOMEWORKNUM}
+\author{\NAME}
+\date{\DATE}
+
+%% Formatting options.
+%\pagenumbering{gobble}  % Include for single-page document.
+
+
+% Document.
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{Solve:}
+\begin{equation*}
+	y^{\prime\prime} - 9y = 0, \quad
+	y(0) = 2, \quad
+	y^\prime(0) = -1.
+\end{equation*}
+The roots of the characteristic equation are
+\begin{equation*}
+	r^2 - 9 = 0 \quad \Rightarrow \quad r_1 = 3, \quad r_2 = -3.
+\end{equation*}
+With $2$ distinct real roots, the general solution is
+\begin{equation*}
+	y(t) = c_1 e^{3 t} + c_2 e^{-3 t}.
+\end{equation*}
+Using the system of equations given by the initial conditions,
+\begin{alignat*}{2}
+	y(0) &=& \quad 2 &= c_1 + c_2 \\
+	y^\prime(0) &=& \quad -1 &= 3 c_1 - 3 c_2,
+\end{alignat*}
+the coefficients can be solved for as
+\begin{equation*}
+	c_1 = \frac{5}{6}, \quad
+	c_2 = \frac{7}{6}.
+\end{equation*}
+Thus,
+\begin{equation*}
+	\boxed{
+		y(t) = \frac{5}{6} e^{3 t} + \frac{7}{6} e^{-3 t}
+	}.
+\end{equation*}
+
+\section*{2.}
+\textit{Solve:}
+\begin{equation*}
+	y^{\prime\prime} + 6y^\prime + 9y = 0, \quad
+	y(0) = 1, \quad
+	y(1) = 1.
+\end{equation*}
+The roots of the characteristic equation are
+\begin{equation*}
+	r^2 + 6r + 9 = 0 \quad \Rightarrow \quad r_1 = -3, \quad r_2 = -3.
+\end{equation*}
+With a repeated real root, the general solution is
+\begin{equation*}
+	y(t) = c_1 e^{-3 t} + c_2 e^{-3 t} t.
+\end{equation*}
+Using the system of equations given by the initial conditions,
+\begin{alignat*}{2}
+	y(0) &=& \quad 1 &= c_1 \\
+	y(1) &=& \quad 1 &= c_1 e^{-3} +  c_2 e^{-3},
+\end{alignat*}
+the coefficients can be solved for as
+\begin{equation*}
+	c_1 = 1, \quad
+	c_2 = e^3 - 1.
+\end{equation*}
+Thus,
+\begin{equation*}
+	\boxed{
+		y(t) = e^{-3 t} + (e^3 - 1) e^{-3 t} t
+	}.
+\end{equation*}
+
+\section*{3.}
+\textit{Solve:}
+\begin{equation*}
+	y^{\prime\prime} + 7y^\prime + 10y = 0, \quad
+	y(0) = -1, \quad
+	y^\prime(0) = 0.
+\end{equation*}
+The roots of the characteristic equation are
+\begin{equation*}
+	r^2 + 7r + 10 = 0 \quad \Rightarrow \quad r_1 = -2, \quad r_2 = -5.
+\end{equation*}
+With $2$ distinct real roots, the general solution is
+\begin{equation*}
+	y(t) = c_1 e^{-2 t} + c_2 e^{-5 t}.
+\end{equation*}
+Using the system of equations given by the initial conditions,
+\begin{alignat*}{2}
+	y(0) &=& \quad -1 &= c_1 + c_2 \\
+	y^\prime(0) &=& \quad 0 &= -2 c_1 - 5 c_2,
+\end{alignat*}
+the coefficients can be solved for as
+\begin{equation*}
+	c_1 = -\frac{5}{3}, \quad
+	c_2 = \frac{2}{3}.
+\end{equation*}
+Thus,
+\begin{equation*}
+	\boxed{
+		y(t) = -\frac{5}{3} e^{-2 t} + \frac{2}{3} e^{-5 t}
+	}.
+\end{equation*}
+
+\end{document}
