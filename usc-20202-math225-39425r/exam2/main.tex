@@ -1,0 +1,424 @@
+% Preamble.
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{tikz}  % Include for figures.
+%\usepackage{subfiles}  % Include for subfiles.
+
+%% Title macros.
+\newcommand{\EXAMNUM}{2}
+\newcommand{\NAME}{D. Choi}
+\newcommand{\DATE}{2020-07-08}
+
+\title{\vspace{-2\baselineskip}MATH 225 - Exam \#\EXAMNUM}
+\author{\NAME}
+\date{\DATE}
+
+%% Formatting options.
+%\pagenumbering{gobble}  % Include for single-page document.
+\allowdisplaybreaks
+
+% Macros.
+%% Norm.
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%% Rotation and reflection matrices.
+\newcommand{\rota}[1]{\text{Rot}(#1 \degree)}
+\newcommand{\refl}[1]{\text{Ref}(#1 \degree)}
+%% Augmented matrix.
+% https://tex.stackexchange.com/a/2238
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+%% Contextualized by input/output bases.
+\newcommand{\based}[3]{{\{#1\}}_{#2}^{#3}}
+
+
+% Document.
+\begin{document}
+\maketitle
+
+\section*{1.}
+\textit{For each each of the ordinary differential equations listed below,
+answer the following:
+\begin{itemize}
+	\item What is its order?
+	\item Is it linear or non-linear?
+	\item If non-linear, why?
+	\item If linear, is it constant coefficient? Is it homogenous?
+\end{itemize}
+}
+\begin{enumerate}[label=(\alph*)]
+	\item $x^{\prime\prime\prime} + x \cdot x^{\prime\prime} + t x^\prime
+	+ x = t^2$.
+	\\[\baselineskip]
+	Third-order, non-linear. \\
+	It is non-linear because of the term $x \cdot x^{\prime\prime}$.
+	
+	\item $x^{\prime\prime\prime} + t x^{\prime\prime} + x = \text{sin}(t).$
+	\\[\baselineskip]
+	Third-order, linear. \\
+	It is not constant coefficient because of the term $t x^{\prime\prime}$.
+	\\
+	It is not homogenous because of the term $\text{sin}(t)$.
+	
+	\item $x^2 + t x^\prime + x = \text{sin}(t)$.
+	\\[\baselineskip]
+	First-order, non-linear. \\
+	It is non-linear because of the term $x^2$.
+	
+	\item $2x^{\prime\prime} + 4 x^\prime = -x$.
+	\\[\baselineskip]
+	Second-order, linear. \\
+	It is constant coefficient because all of the coefficients are constant. \\
+	It is homogenous because there are no constant terms.
+\end{enumerate}
+\newpage
+
+\section*{2.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Solve
+	$x^{\prime\prime} + 3x^\prime + 2x = 0$ with the restrictions that
+	$x(0) = 2$ and $x^\prime(0) = 1$.}\\[\baselineskip]
+	The roots of the characteristic equation are
+	\begin{equation*}
+		r^2 + 3r + 2 = 0 \quad \Rightarrow \quad r_1 = -1, \quad r_2 = -2.
+	\end{equation*}
+	With $2$ distinct real roots, the general solution is
+	\begin{equation*}
+		x(t) = c_1 e^{-t} + c_2 e^{-2 t}.
+	\end{equation*}
+	Using the system of equations given by the initial conditions,
+	\begin{alignat*}{2}
+		x(0) &=& \quad 2 &= c_1 + c_2 \\
+		x^\prime(0) &=& \quad 1 &= -c_1 - 2 c_2,
+	\end{alignat*}
+	the coefficients can be solved for as
+	\begin{equation*}
+		c_1 = 5, \quad
+		c_2 = -3.
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		\boxed{
+			x(t) = 5 e^{-t} - 3 e^{-2 t}
+		}.
+	\end{equation*}
+	
+	\item \textit{Consider a similar, but non-homogenous o.d.e.:
+	$x^{\prime\prime} + 3x^\prime + 2x = 2t + 3$. Show that
+	$x(t) = 7e^{-2t} + 2e^{-t} + t$ solves this non-homogenous o.d.e.}
+	\\[\baselineskip]
+	Let's ``brute forge plug and chug'':
+	\begin{align*}
+		x &= 7e^{-2t} + 2e^{-t} + t \\
+		x^\prime &= -14e^{-2t} - 2e^{-t} + 1 \\
+		x^{\prime\prime} &= 28e^{-2t} + 2e^{-t}
+	\end{align*}
+	Thus,
+	\begin{align*}
+		2t + 3 &\overset{?}{=} x^{\prime\prime} + 3x^\prime + 2x
+		\\ &\overset{?}{=}
+		(28e^{-2t} + 2e^{-t})
+		+ 3(-14e^{-2t} - 2e^{-t} + 1)
+		+ 2(7e^{-2t} + 2e^{-t} + t)
+		\\ &\overset{?}{=}
+		(28 - 42 + 14)(e^{-2t})
+		+ (2 - 6 + 4)(e^{-t})
+		+ (2)(t) + (3)(1)
+		\\
+		2t + 3 &= 2t + 3.
+	\end{align*}
+\end{enumerate}
+\newpage
+
+\section*{3.}
+\textit{Suppose that}
+\begin{equation*}
+	A = 
+	\begin{pmatrix}
+		-1 & 1 & 1 \\
+		1 & -1 & 1 \\
+		1 & 1 & -1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & 2 & 0 \\
+		0 & 0 & -1
+	\end{pmatrix}
+	\begin{pmatrix}
+		-1 & 1 & 1 \\
+		1 & -1 & 1 \\
+		1 & 1 & -1
+	\end{pmatrix}^{-1}
+	.
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{What is
+		$A^{1001} \begin{pmatrix} 0 \\ 2 \\ 0 \end{pmatrix}$
+	?}
+	\\[\baselineskip]
+	Note that
+	\begin{equation*}
+		\begin{pmatrix} 0 \\ 2 \\ 0 \end{pmatrix}
+		=
+		\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+		+
+		\begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		.
+	\end{equation*}
+	Thus,
+	\begin{align*}
+		A^{1001} \begin{pmatrix} 0 \\ 2 \\ 0 \end{pmatrix}
+		&=
+		A^{1001} \left(
+			\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+			+
+			\begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		\right)
+		\\
+		&=
+		A^{1001} \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+		+
+		A^{1001} \begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		\\
+		&=
+		\lambda_{1}^{1001} \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+		+
+		\lambda_{3}^{1001} \begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		\\
+		&=
+		1^{1001} \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+		+
+		{(-1)}^{1001} \begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		\\
+		&=
+		\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+		-
+		\begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+		\\
+		&=
+		\boxed{
+			\begin{pmatrix} -2 \\ 0 \\ 2 \end{pmatrix}
+		}
+	\end{align*}
+	
+	\item \textit{What is $\text{det}(A)$? Why?}
+	\begin{align*}
+		\text{det}(A)
+		&= \text{det}(S) \text{det}(D) \text{det}(S^{-1}) \\
+		&= \text{det}(S) \text{det}(D) \frac{1}{\text{det}(S)} \\
+		&= \text{det}(D) \\
+		&=
+		\begin{vmatrix}
+			1 & 0 & 0 \\
+			0 & 2 & 0 \\
+			0 & 0 & -1
+		\end{vmatrix} \\
+		&= 1 \cdot 2 \cdot -1 \\
+		&= \boxed{-2}.
+	\end{align*}
+	
+	\item \textit{What is an eigenbasis for $A$?}
+	\begin{equation*}
+		\boxed{
+			\left\{
+				\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix},
+				\begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix},
+				\begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix}
+			\right\}.
+		}
+	\end{equation*}
+\end{enumerate}
+\newpage
+
+\section*{4.}
+\textit{Let $A$ be the $3 \times 3$ matrix associated with the transformation
+that orthogonally projects vectors onto the plane $2x + 3y - z = 0$. \\
+Let $B$ be the $3 \times 3$ matrix associated with the transformation that
+reflects vectors across the plane $x + y + z = 0$.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Pick one of the following and find a basis for it:
+	\begin{itemize}
+		\item $\text{nullspace}(AB)$
+		\item $\text{range}(AB)$
+	\end{itemize}
+	}
+	The range of $AB$ is the plane that $A$ projects onto. \\
+	A basis for the range of $AB$ can be found using the normal vector of the
+	plane,
+	\begin{equation*}
+		\vec{n} = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix},
+	\end{equation*}
+	to find two linearly independent vectors orthogonal to $\vec{n}$ which lie
+	on the plane:
+	\begin{equation*}
+		\boxed{
+			\left\{
+				\begin{pmatrix} 1 \\ 0 \\ 2 \end{pmatrix},
+				\begin{pmatrix} 0 \\ 1 \\ 3 \end{pmatrix}
+			\right\}.
+		}
+	\end{equation*}
+	
+	\item \textit{Repeat the above instructions for:
+	\begin{itemize}
+		\item $\text{nullspace}(BA)$
+		\item $\text{range}(BA)$
+	\end{itemize}
+	}
+	The nullspace of $BA$ consists of all the vectors that $A$ will
+	orthographically project to $0$. \\
+	Thus, a basis for the nullspace of $BA$ is
+	\begin{equation*}
+		\left\{ \vec{n} \right\}
+		=
+		\boxed{
+			\left\{
+				\begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}
+			\right\}.
+		}
+	\end{equation*}
+	
+	\item \textit{Find all of the following and briefly explain your
+	reasoning.}
+	\begin{itemize}
+		\item $\text{rank}(AB) = 2$
+		\item $\text{nullity}(AB) = 1$
+		\item $\text{rank}(BA) = 2$
+		\item $\text{nullity}(BA) 1$
+	\end{itemize}
+	The image of both $AB$ and $BA$ are planes, thus the rank of both is $2$. \\
+	By the rank-nullity theorem, the nullities of $AB$ and $BA$ must be
+	$3 - 2 = 1$.
+\end{enumerate}
+\newpage
+
+\section*{5.}
+\textit{Let $T$ be the reflection in $\mathbb{R}^2$ across $y=x$.}
+\begin{gather*}
+	\mathcal{A}
+	=
+	\left\{
+		\begin{pmatrix} \cos(30 \degree) \\ \sin(30 \degree) \end{pmatrix},
+		\begin{pmatrix} -\sin(30 \degree) \\ \cos(30 \degree) \end{pmatrix}
+	\right\}
+	\\
+	\mathcal{B}
+	=
+	\left\{
+		\begin{pmatrix} -\sin(45 \degree) \\ \cos(45 \degree) \end{pmatrix},
+		\begin{pmatrix} \cos(45 \degree) \\ \sin(45 \degree) \end{pmatrix}
+	\right\}
+\end{gather*}
+\textit{Find the following and show your work.}
+\begin{enumerate}[label=(\alph*)]
+	\item
+	\begin{align*}
+		\based{T}{\mathcal{B}}{\mathcal{A}}
+		&=
+		\based{T}{\mathcal{S}}{\mathcal{A}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{T}{\mathcal{B}}{\mathcal{S}}
+		\\ &=
+		\begin{pmatrix}
+			\cos(30 \degree) & -\sin(30 \degree) \\
+			\sin(30 \degree) & \cos(30 \degree)
+		\end{pmatrix}^{-1}
+		\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+		\begin{pmatrix}
+			-\sin(45 \degree) & \cos(45 \degree) \\
+			\cos(45 \degree) & \sin(45 \degree
+		\end{pmatrix}
+	\end{align*}
+	
+	\item
+	\begin{align*}
+		\based{T}{\mathcal{A}}{\mathcal{A}}
+		&=
+		\based{T}{\mathcal{S}}{\mathcal{A}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{T}{\mathcal{A}}{\mathcal{S}}
+		\\ &=
+		\begin{pmatrix}
+			\cos(30 \degree) & -\sin(30 \degree) \\
+			\sin(30 \degree) & \cos(30 \degree)
+		\end{pmatrix}^{-1}
+		\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+		\begin{pmatrix}
+			\cos(30 \degree) & -\sin(30 \degree) \\
+			\sin(30 \degree) & \cos(30 \degree)
+		\end{pmatrix}
+	\end{align*}
+	
+	\item
+	\begin{align*}
+		\based{T}{\mathcal{A}}{\mathcal{A}}
+		&=
+		\based{T}{\mathcal{S}}{\mathcal{A}}
+		\based{T}{\mathcal{S}}{\mathcal{S}}
+		\based{T}{\mathcal{A}}{\mathcal{S}}
+		\\ &=
+		\begin{pmatrix}
+			-\sin(45 \degree) & \cos(45 \degree) \\
+			\cos(45 \degree) & \sin(45 \degree
+		\end{pmatrix}^{-1}
+		\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+		\begin{pmatrix}
+			-\sin(45 \degree) & \cos(45 \degree) \\
+			\cos(45 \degree) & \sin(45 \degree
+		\end{pmatrix}
+	\end{align*}
+\end{enumerate}
+\newpage
+
+\section*{6.}
+\textit{Let $E$ be the $25 \times 25$ matrix with ones on both diagonals and
+zeros everywhere else.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{For each vector, determine if it is an eigenvector of $E$.
+	If it is, find the corresponding eigenvalue. If it is not, give a brief
+	explanation why.}
+	{
+	\itemize{
+		\item \textit{$\vec{e}_1$ = 1 on top, 24 0s.}
+		\\[\baselineskip]
+		No, $E \vec{e}_1$ will have 1 on the top and bottom with zeros
+		everywhere else.
+		
+		\item \textit{$\vec{e}_2$ = 12 0s, 1 in the middle, 12 0s.}
+		\\[\baselineskip]
+		Yes, $E \vec{e}_2 = \vec{e}_2$, thus $\boxed{\lambda_2 = 1}$.
+		
+		\item \textit{$\vec{e}_3$ = 1 on top, 23 0s, 1 on bottom.}
+		\\[\baselineskip]
+		Yes, $E \vec{e}_3$ will have 2 on top, 23 0s, and 2 on the bottom.
+		Thus, $\boxed{\lambda_3 = 2}$.
+		
+		\item \textit{$\vec{e}_4$ = 0, 1 on top, 21 0s, 1, 0 on bottom.}
+		\\[\baselineskip]
+		Uh, yes, $\boxed{\lambda_4 = 2}$.
+		
+		\item \textit{$\vec{e}_5$ = 1 on top, 23 0s, -1 on bottom.}
+		\\[\baselineskip]
+		Yes, $E \vec{e}_5 = \vec{0}$, thus $\boxed{\lambda_5 = 0}$.
+	}
+	}
+	
+	\item \textit{Create a complete algebraic and geometric multiplicity table
+	for the eigenvalues of $E$. Explain your reasoning.}
+	Ouch.
+	
+	\item \textit{Is $E$ diagonalizable? Justify.} \\[\baselineskip]
+	Yes. This was a guess.
+	
+	\item \textit{Is $E$ invertible? Justify.} \\[\baselineskip]
+	No, row-reducing the matrix will result in the bottom half being zeros.
+\end{enumerate}
+
+\end{document}
