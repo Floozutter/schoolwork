@@ -11,6 +11,6 @@ $ java Sandbox
 To create and run a JAR file:
 ```
 $ javac Sandbox.java
-$ jar cfmv a.jar manifest.mf Sandbox.class
-$ java -jar a.jar
+$ jar cfmv Sandbox.jar manifest.mf Sandbox.class
+$ java -jar Sandbox.jar
 ```
