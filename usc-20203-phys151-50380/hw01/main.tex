@@ -6,13 +6,15 @@
 \usepackage{gensymb}
 \usepackage{amsfonts}
 \usepackage{enumitem}
-%\usepackage{tikz}  % Include for figures.
+\usepackage{siunitx}
 %\usepackage{subfiles}  % Include for subfiles.
+%\usepackage{tikz}  % Include for handmade figures.
+\usepackage{graphicx}  % Include for external figures.
 
 %% Title macros.
-\newcommand{\HOMEWORKNUM}{?}
+\newcommand{\HOMEWORKNUM}{1}
 \newcommand{\NAME}{D. Choi}
-\newcommand{\DATE}{2020-??-??}
+\newcommand{\DATE}{2020-08-28}
 
 \title{\vspace{-2\baselineskip}PHYS 225 - Written Homework \#\HOMEWORKNUM}
 \author{\NAME}
@@ -26,11 +28,115 @@
 \begin{document}
 \maketitle
 
+
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
-\begin{equation*}
-	\pi \approx e
-\end{equation*}
+\textit{Consider the vectors $\vec{A} = -2\hat{\imath} - 2\hat{\jmath}$ and
+$\vec{B} = \hat{\imath} + 3\hat{\jmath}$.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Find the unit vectors
+	$\hat{A} = \frac{\vec{A}}{\|\vec{A}\|}$ and
+	$\hat{B} = \frac{\vec{B}}{\|\vec{B}\|}$.}
+	\begin{gather*}
+		\hat{A}
+		= \frac{\vec{A}}{\|\vec{A}\|}
+		= \frac{-2\hat{\imath} - 2\hat{\jmath}}{2\sqrt{2}}
+		= \boxed{
+			-\frac{1}{\sqrt{2}} \hat{\imath}
+			- \frac{1}{\sqrt{2}} \hat{\jmath}
+		}, \\
+		\hat{B}
+		= \frac{\vec{B}}{\|\vec{B}\|}
+		= \frac{\hat{\imath} + 3\hat{\jmath}}{\sqrt{10}}
+		= \boxed{
+			\frac{1}{\sqrt{10}} \hat{\imath}
+			+ \frac{3}{\sqrt{10}} \hat{\jmath}
+		}.
+	\end{gather*}
+	\item \textit{Express the vector $\vec{C} = 5\hat{\imath} - 3\hat{\jmath}$
+	in terms of $\hat{A}$ and $\hat{B}$.}
+	\begin{gather*}
+		\vec{C} = \hat{A}x + \hat{B}y, \\
+		\begin{pmatrix} 5 \\ -3 \end{pmatrix}
+		=
+		\begin{pmatrix}
+			-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{10}} \\
+			-\frac{1}{\sqrt{2}} & \frac{3}{\sqrt{10}}
+		\end{pmatrix}
+		\begin{pmatrix} x \\ y \end{pmatrix}.
+	\end{gather*}
+	Solving for $x$ and $y$,
+	\begin{equation*}
+		\begin{pmatrix} x \\ y \end{pmatrix}
+		= \begin{pmatrix} -9\sqrt{2} \\ -4\sqrt{10} \end{pmatrix}.
+	\end{equation*}.
+	Thus,
+	\begin{equation*}
+		\vec{C} = \boxed{
+			-9\sqrt{2}\hat{A} - 4\sqrt{10}\hat{B}
+		}.
+	\end{equation*}
+\end{enumerate}
+
+\section*{2.}
+\textit{A particle moves in one dimension with a velocity
+$v(t) = v_0 + v_1 t^3$, where $v_0 = 2.00\si{\frac{m}{s}}$ and
+$v_1 = 1.00\si{\frac{m}{s^4}}$.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{Assuming that at $t_0 = 0$, the particle is at position
+	$x_0 = 4.00\si{m}$ measured from the origin, derive a formula for the
+	particle's position as a function of time.}
+	\begin{gather*}
+		v(t) = v_1 t^3 + v_0, \\
+		x(t)
+		= \int v(t) dt
+		= \boxed{
+			\frac{v_1}{4}t^4 + v_0 t + x_0
+		}.
+	\end{gather*}
+	\item \textit{Obtain a formula for the acceleration of the particle.}
+	\begin{equation*}
+		a(t)
+		= \frac{d}{dt} v(t)
+		= \boxed{
+			3v_1 t^2
+		}.
+	\end{equation*}
+	\item \textit{Make quantitative plots of the particle's position,
+	velocity, and acceleration as a function of time during the interval
+	$t_0 = 0$ and $t_1 = 1.00\si{s}$.}
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{fig.pdf}
+	\end{center}
+	\newpage
+	\item \textit{What is the particle's average velocity and acceleration in
+	the time interval $t_0 = 0$ to $t_1 = 1.00\si{s}$?} \\[\baselineskip]
+	For the interval $[0, 1.00\si{s}]$, let $v_{avg}$ and $a_{avg}$ be the
+	particle's average velocity and average acceleration over the interval
+	respectively.
+	\begin{gather*}
+		v_{avg}
+		= \frac{x(1.00\si{s}) - x(0)}{1.00\si{s} - 0}
+		= \frac{6.25\si{m} - 4.00\si{m}}{1.00\si{s} - 0}
+		= \boxed{2.25\si{\frac{m}{s}}}, \\
+		a_{avg}
+		= \frac{v(1.00\si{s}) - v(0)}{1.00\si{s} - 0}
+		= \frac{3.00\si{\frac{m}{s}} - 2.00\si{\frac{m}{s}}}{1.00\si{s} - 0}
+		= \boxed{1.00\si{\frac{m}{s^2}}}.
+	\end{gather*}
+	\item \textit{What is the particle's position at the end of this time
+	interval (at $t_1 = 1.00\si{s}$)?}
+	\begin{align*}
+		x(1.00\si{s})
+		&= \frac{v_1}{4}(1.00\si{s})^4 + v_0 (1.00\si{s}) + x_0 \\
+		&= {
+			\frac{1.00\si{\frac{m}{s^4}}}{4}(1.00\si{s})^4
+			+ 2.00\si{\frac{m}{s}} (1.00\si{s})
+			+ 4.00\si{m}
+		} \\
+		&= \boxed{6.25\si{m}}
+		.
+	\end{align*}
+\end{enumerate}
+
 
 \end{document}
