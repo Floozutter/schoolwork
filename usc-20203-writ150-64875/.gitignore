@@ -1,4 +1,4 @@
-# pdflatex stuff
+# pdflatex stuff.
 *.aux
 *.log
 *.pdf
