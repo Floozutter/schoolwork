@@ -30,11 +30,90 @@
 
 
 \section*{1.}
-\textit{EXAMPLE TEXT IN PLACE OF PROMPT.} \\[\baselineskip]
-EXAMPLE TEXT IN PLACE OF ANSWER.
-\begin{equation*}
-	\pi \approx e
-\end{equation*}
+\textit{The figure shows a sailing ship approaching a hostile harbor. At time
+$t = 0$, a cannon placed atop a lighthouse, at height $h$ above the deck of
+the hostile ship, fires a projectile at the oncoming ship, which is moving at
+a speed of $v_1$ toward the shore. The cannonball is fired at a speed of $v_2$
+at an angle $\theta$ above the horizontal.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textit{For this cannonball to impact exactly the front of the ship,
+	at what distance $D$ from the dock should the ship be when the equipment
+	is thrown? Ignore air resistance.} \\[\baselineskip]
+	The ship's horizontal and vertical positions as functions of time can be
+	modeled by
+	\begin{gather*}
+		x_s(t) = -v_1t + D, \\
+		y_s(t) = 0.
+	\end{gather*}
+	In turn, the projectile's horizontal and vertical positions can be modeled
+	by
+	\begin{gather*}
+		x_p(t) = v_2\cos(\theta)t, \\
+		y_p(t) = -\frac{g}{2}t^2 + v_2\sin(\theta)t + h.
+	\end{gather*}
+	The projectile must hit the ship at a time $t_f$ when both
+	$x_s(t_f) = x_p(t_f)$ and $y_s(t_f) = y_p(t_f)$. Because $y_s(t_f)$ and
+	$y_p(t_f)$ are both known, $t_f$ can be solved for with
+	\begin{gather*}
+		y_s(t_f) = y_p(t_f), \\
+		0 = -\frac{g}{2}{t_f}^2 + v_2\sin(\theta)t_f + h, \\
+		t_f = \frac{v_2\sin(\theta) + \sqrt{(v_2\sin(\theta))^2 + 2gh}}{g}.
+	\end{gather*}
+	Using $t_f$, $D$ can be solved for with
+	\begin{gather*}
+		x_s(t_f) = x_p(t_f), \\
+		-v_1t_f + D = v_2\cos(\theta)t_f, \\
+		D = v_2\cos(\theta)t_f + v_1t_f, \\
+		D = (v_2\cos(\theta) + v_1) t_f.
+	\end{gather*}
+	In summary, the expanded formula to find the distance $D$ is
+	\begin{gather*}
+		\boxed{D = (v_2\cos(\theta) + v_1) t_f}
+	\end{gather*}
+	where
+	\begin{equation*}
+		\boxed{
+			t_f = \frac{v_2\sin(\theta)
+			+ \sqrt{(v_2\sin(\theta))^2 + 2gh}}{g}
+		}.
+	\end{equation*}
+	\item \textit{What is the total time of flight of the cannonball? \\
+	Use $v_1 = 40.0\si{\frac{cm}{s}},\ v_2 = 16.0\si{\frac{m}{s}},\ 
+	\theta = \ang{55.0}$, and $h = 9.25\si{m}$.}
+	\begin{align*}
+		t_f
+		&= \frac{v_2\sin(\theta) + \sqrt{(v_2\sin(\theta))^2 + 2gh}}{g} \\
+		&= \frac
+			{
+				(16.0\si{\frac{m}{s}}) \sin(\ang{55.0})
+				+ \sqrt{
+					((16.0\si{\frac{m}{s}}) \sin(\ang{55.0}))^2
+					+ 2 (9.81\si{\frac{m}{s^2}}) (9.25\si{m})
+				}
+			}
+			{9.81\si{\frac{m}{s^2}}}
+			\\
+		&= \boxed{3.25\si{s}}.
+	\end{align*}
+	\item \textit{Using the numbers given in (b.), what are the $x$ and $y$
+	components of the velocity of the cannonball just before impacting the
+	deck of the ship?} \\[\baselineskip]
+	Let $v_x(t)$ and $v_y(t)$ represent the horizontal and vertical components
+	of the projectile's velocity as functions of time, respectively.
+	\begin{align*}
+		v_x(t_f)
+		&= v_2\cos(\theta) \\
+		&= (16.0\si{\frac{m}{s}}) \cos(\ang{55.0}) \\
+		&= \boxed{9.18\si{\frac{m}{s}}}.
+	\end{align*}
+	\begin{align*}
+		v_y(t_f)
+		&= -gt_f + v_2\sin(\theta) \\
+		&= -(9.81\si{\frac{m}{s^2}}) (3.25\si{s})
+			+ (16.0\si{\frac{m}{s}}) \sin(\ang{55.0}) \\
+		&= \boxed{-18.8\si{\frac{m}{s}}}.
+	\end{align*}
+\end{enumerate}
 
 
 \end{document}
