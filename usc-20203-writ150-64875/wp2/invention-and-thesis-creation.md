@@ -1,7 +1,7 @@
 # Invention and Thesis Creation
 ## 1. Case Study
 [
-	Kashmir Hill.
+	Hill, Kashmir.
 	"Wrongfully Accused by an Algorithm".
 	*The New York Times*,
 	June 24, 2020
