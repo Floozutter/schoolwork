@@ -1,34 +1,44 @@
+/**
+ * An anagram finder, for Vic and Calvin.
+ */
+
 #include <iostream>
 #include <fstream>
 #include <istream>
 #include <string>
-using namespace std;
 
-const int MAXRESULTS   = 20;    // Max matches that can be found
-const int MAXDICTWORDS = 30000; // Max words that can be read in
+constexpr int DICT_LIMIT = 30000;
+constexpr int RESULTS_LIMIT = 20;
 
-int main()
-{
-	string results[MAXRESULTS];
-	string dict[MAXDICTWORDS];
-	ifstream dictfile;         // file containing the list of words
-	int nwords;                // number of words read from dictionary
-	string word;
+int loadDictionary(std::istream & dictfile, std::string dict[DICT_LIMIT]);
+int permuteRecur(
+	std::string word,
+	std::string const dict[DICT_LIMIT],
+	int dict_size,
+	std::string results[RESULTS_LIMIT]
+);
+void printRecur(std::string const results[RESULTS_LIMIT], int results_size);
 
-	dictfile.open("words.txt");
+
+int main() {
+	// Read valid words from file containing words separated by newlines.
+	std::ifstream dictfile("words.txt");
 	if (!dictfile) {
-		cout << "File not found!" << endl;
-		return (1);
+		std::cout << "File not found!" << std::endl;
+		return 1;
 	}
-
-	nwords = loadDictionary(dictfile, dict);
-
-	cout << "Please enter a string for an anagram: ";
-	cin >> word;
-
-	int numMatches = permuteRecur(word, dict, nwords, results);
-	if (!numMatches)
-		cout << "No matches found" << endl;
-	else
-		printRecur(results, numMatches);
+	std::string dict[DICT_LIMIT];  // Valid words.
+	int const dict_size = loadDictionary(dictfile, dict);
+	// Read word to match anagrams against from user input.
+	std::string word;
+	std::cout << "Please enter a word to find anagrams of: ";
+	std::cin >> word;
+	// Match anagrams.
+	std::string results[RESULTS_LIMIT];  // Matched anagrams.
+	int const results_size = permuteRecur(word, dict, dictsize, anagrams);
+	if (results_size <= 0) {
+		cout << "No matches found." << endl;
+	} else {
+		printRecur(results, results_size);
+	}
 }
