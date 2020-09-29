@@ -1,12 +1,12 @@
 #include "constants.hpp"
 #include <string>
 
-void count_ascii(std::string s, int (& counter)[128]) {
+void countAscii(std::string s, int (& counter)[128]) {
 	if (!s.empty()) {
 		if (0 <= s.front() && s.front() < 128) {
 			++counter[s.front()];
 		}
-		count_ascii(s.substr(1), counter);
+		countAscii(s.substr(1), counter);
 	}
 }
 
@@ -17,11 +17,11 @@ void zero(int arr[], int size) {
 	}
 }
 
-bool arr_equal(int const a[], int const b[], int size) {
+bool arrEqual(int const a[], int const b[], int size) {
 	if (size <= 0) {
 		return true;
 	} else if (*a == *b) {
-		return arr_equal(a + 1, b + 1, size - 1);
+		return arrEqual(a + 1, b + 1, size - 1);
 	} else {
 		return false;
 	}
@@ -39,8 +39,8 @@ int permuteRecurHelper(
 		return results_size;
 	} else {
 		zero(other_counter, 128);
-		count_ascii(*dict, other_counter);
-		bool const is_anagram = arr_equal(model_counter, other_counter, 128);
+		countAscii(*dict, other_counter);
+		bool const is_anagram = arrEqual(model_counter, other_counter, 128);
 		if (is_anagram) {
 			*results = *dict;
 		}
@@ -61,7 +61,7 @@ int permuteRecur(
 	std::string results[]
 ) {
 	int model_counter[128] = {0};
-	count_ascii(word, model_counter);
+	countAscii(word, model_counter);
 	int other_counter[128];
 	return permuteRecurHelper(
 		model_counter,
