@@ -33,7 +33,7 @@ int permuteRecurHelper(
 	if (results_size >= RESULTS_LIMIT || dict_size <= 0) {
 		return results_size;
 	} else {
-		bool is_anagram = sorted_word == quickSort(*dict);
+		bool const is_anagram = sorted_word == quickSort(*dict);
 		if (is_anagram) {
 			*results = *dict;
 		}
