@@ -19,12 +19,12 @@ Of course, this perspective was motivated by the fact that Lana and Lilly
 Wachowski (the directors of *The Matrix*) are both trans women, but I think
 the symbolism can stand fairly strongly with just the content of the film
 alone: The way that Neo initially lives out two different lives within
-*The Matrix* where one life is accepted by the system but Neo can't bear to
-live it and the other life is criminal yet represents Neo's true self, the way
-that Agent Smith adamantly sticks to addressing Neo by his old name "Mr.
-Anderson", the way that Neo is forced to choose between living within the
-system unhappily or breaking free from it to actualize his ideal self, the way
-that knowing the truth about your relation to the *The Matrix* is facilitated
-by consuming a pill, the way that the connection between your personal
-experience and the outside reality is constantly emphasized throughout the
-film, and more... It all fits snugly!
+the Matrix where one life is accepted by the system but Neo can't bear to live
+it and the other life is criminal yet represents Neo's true self, the way that
+Agent Smith adamantly sticks to addressing Neo by his old name "Mr. Anderson",
+the way that Neo is forced to choose between living within the system
+unhappily or breaking free from it to actualize his ideal self, the way that
+knowing the truth about your relation to the Matrix is facilitated by
+consuming a pill, the way that the connection between your personal experience
+and the outside reality is constantly emphasized throughout the film, and
+more... It all fits snugly!
