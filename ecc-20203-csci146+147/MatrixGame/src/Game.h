@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Arena.h"
+class Arena;
 
 class Game {
 	public:

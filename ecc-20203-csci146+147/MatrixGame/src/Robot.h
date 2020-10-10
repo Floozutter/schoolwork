@@ -2,7 +2,6 @@
 #define ROBOT_H
 
 #include "globals.h"
-#include "Arena.h"
 
 class Arena;
 

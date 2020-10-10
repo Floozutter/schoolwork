@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
 #include "globals.h"
+#include "Arena.h"
+#include "Player.h"
 #include "Game.h"
 
 Game::Game(int rows, int cols, int nRobots) {

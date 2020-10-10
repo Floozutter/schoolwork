@@ -1,6 +1,6 @@
 #include <cstdlib>
-#include <string>
 #include <iostream>
+#include "Arena.h"
 #include "Player.h"
 
 Player::Player(Arena* ap, int r, int c) {

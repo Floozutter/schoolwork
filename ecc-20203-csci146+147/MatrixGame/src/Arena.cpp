@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <iostream>
+#include "Player.h"
+#include "Robot.h"
 #include "Arena.h"
 
 Arena::Arena(int r, int c) {

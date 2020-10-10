@@ -3,7 +3,6 @@
 
 #include <string>
 #include "globals.h"
-#include "Arena.h"
 
 class Arena;
 

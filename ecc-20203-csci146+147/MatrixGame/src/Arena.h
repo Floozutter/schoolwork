@@ -3,8 +3,6 @@
 
 #include <string>
 #include "globals.h"
-#include "Player.h"
-#include "Robot.h"
 
 class Player;
 class Robot;
@@ -19,12 +17,13 @@ class Arena {
 		Player* player() const;
 		int robotCount() const;
 		int nRobotsAt(int r, int c) const;
-		void display(std::string msg) const;
 		// Mutators.
 		bool addRobot(int r, int c);
 		bool addPlayer(int r, int c);
 		void damageRobotAt(int r, int c);
 		bool moveRobots();
+		// Output.
+		void display(std::string msg) const;
 	private:
 		int m_rows;
 		int m_cols;

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include "Arena.h"
 #include "Robot.h"
 
 Robot::Robot(Arena* ap, int r, int c) {
