@@ -8,7 +8,7 @@ class Arena;
 
 class Player {
 	public:
-		Player(Arena *ap, int r, int c);
+		Player(Arena * ap, int r, int c);
 		// Accessors.
 		int row() const;
 		int col() const;
@@ -21,7 +21,7 @@ class Player {
 		bool shoot(int dir);
 		void setDead();
 	private:
-		Arena* m_arena;
+		Arena * m_arena;
 		int m_row;
 		int m_col;
 		int m_age;

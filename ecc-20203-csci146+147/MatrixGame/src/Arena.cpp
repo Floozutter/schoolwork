@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <iostream>
+#include <algorithm>
+#include <memory>
 #include "Player.h"
 #include "Robot.h"
 #include "Arena.h"
@@ -17,22 +19,25 @@ Arena::Arena(int r, int c) {
 }
 
 Arena::~Arena() {
-    // TODO: Delete the player and all remaining dynamically allocated robots.
+	// Delete player.
+	delete this->m_player;
+	// Delete robots.
+	std::for_each(
+		this->m_robots,
+		this->m_robots + this->m_nRobots,
+		std::default_delete<Robot>()
+	);
 }
 
 int Arena::rows() const {
-	// TODO: TRIVIAL:  Return the number of rows in the arena.
-	// Delete the following line and replace it with the correct code.
-	return 1;  // This implementation compiles, but is incorrect.
+	return this->m_rows;
 }
 
 int Arena::cols() const {
-	// TODO: TRIVIAL: Return the number of columns in the arena.
-	// Delete the following line and replace it with the correct code.
-	return 1;  // This implementation compiles, but is incorrect.
+	return this->m_cols;
 }
 
-Player* Arena::player() const {
+Player * Arena::player() const {
 	return this->m_player;
 }
 
@@ -41,25 +46,42 @@ int Arena::robotCount() const {
 }
 
 int Arena::nRobotsAt(int r, int c) const {
-	// TODO: Return the number of robots at row r, column c.
-	return 0;  // This implementation compiles, but is incorrect.
+	return std::count_if(
+		this->m_robots,
+		this->m_robots + this->m_nRobots,
+		[r, c] (Robot const * robot) {
+			return robot->row() == r && robot->col() == c;
+		}
+	);
 }
 
 void Arena::display(std::string msg) const {
 	// Position (row,col) in the arena coordinate system is represented in the
 	// array element grid[row - 1][col - 1].
 	char grid[MAX_ROWS][MAX_COLS];
-	int r, c;
 	// Fill the grid with dots.
-	for (r = 0; r < this->rows(); ++r) {
-		for (c = 0; c < this->cols(); ++c) {
+	for (int r = 0; r < this->rows(); ++r) {
+		for (int c = 0; c < this->cols(); ++c) {
 			grid[r][c] = '.';
 		}
 	}
-	// Indicate each robot's position.
-	// TODO: If one robot is at some grid point, set the char to 'R'.
-	// If it's 2 though 8, set it to '2' through '8'.
-	// For 9 or more, set it to '9'.
+	// Indicate each robot's position:
+	// If only 1 robot is at some grid point, set the char to 'R'.
+	// If there are 2 though 8 at some grid point, set it to '2' through '8'.
+	// If there are 9 or more at some grid point, set it to '9'.
+	for (int r = 0; r < this->rows(); ++r) {
+		for (int c = 0; c < this->cols(); ++c) {
+			size_t const n = this->nRobotsAt(r + 1, c + 1);
+			if (n < 1) {
+			} else if (n == 1) {
+				grid[r][c] = 'R';
+			} else if (n < 9) {
+				grid[r][c] = '0' + n;
+			} else {
+				grid[r][c] = '9';
+			}
+		}
+	}
 	// Indicate player's position.
 	if (this->m_player != nullptr) {
 		// Set the char to '@', unless there's also a robot there,
@@ -73,14 +95,13 @@ void Arena::display(std::string msg) const {
 	}
 	// Draw the grid.
 	clearScreen();
-	for (r = 0; r < this->rows(); ++r) {
-		for (c = 0; c < this->cols(); ++c) {
+	for (int r = 0; r < this->rows(); ++r) {
+		for (int c = 0; c < this->cols(); ++c) {
 			std::cout << grid[r][c];
 		}
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-
 	// Write message, robot, and player info.
 	std::cout << std::endl;
 	if (msg != "") {
@@ -102,11 +123,16 @@ void Arena::display(std::string msg) const {
 }
 
 bool Arena::addRobot(int r, int c) {
-	// If MAXROBOTS have already been added, return false.  Otherwise,
-	// dynamically allocate a new robot at coordinates (r,c).  Save the
+	// If MAX_ROBOTS have already been added, return false. Otherwise,
+	// dynamically allocate a new robot at coordinates (r,c). Save the pointer
 	// pointer to the newly allocated robot and return true.
-	// TODO:  Implement this.
-	return false;  // This implementation compiles, but is incorrect.
+	if (this->m_nRobots >= MAX_ROBOTS) {
+		return false;
+	} else {
+		this->m_robots[this->m_nRobots] = new Robot(this, r, c);
+		++this->m_nRobots;
+		return true;
+	}
 }
 
 bool Arena::addPlayer(int r, int c) {
@@ -120,16 +146,40 @@ bool Arena::addPlayer(int r, int c) {
 }
 
 void Arena::damageRobotAt(int r, int c) {
-    // TODO:  Damage one robot at row r, column c if at least one is there.
-    // If the robot does not survive the damage, destroy it.
+	// Damage one robot at row r, column c if at least one is there. If the
+	// robot does not survive the damage, destroy it.
+	Robot * * it = std::find_if(
+		this->m_robots,
+		this->m_robots + this->m_nRobots,
+		[r, c] (Robot const * robot) {
+			return robot->row() == r && robot->col() == c;
+		}
+	);
+	if (it != this->m_robots + this->m_nRobots) {
+		// Robot found, so damage it.
+		if (!(*it)->takeDamageAndLive()) {
+			// Robot didn't survive, so destroy it.
+			delete *it;
+			// Swap and pop to maintain contiguity of live robots.
+			*it = *(this->m_robots + this->m_nRobots - 1);
+			--this->m_nRobots;
+		}
+	}
 }
 
 bool Arena::moveRobots() {
-	for (int k = 0; k < this->m_nRobots; ++k) {
-		// TODO:  Have the k-th robot in the arena make one move.
-		// If that move results in that robot being in the same position as
-		// the player, the player dies.
-	}
+	// Move each robot in the arena. If that move results in that robot being
+	// in the same position as the player, the player dies.
+	std::for_each(
+		this->m_robots,
+		this->m_robots + this->m_nRobots,
+		[plyr = this->m_player] (Robot * robot) {
+			robot->move();
+			if (robot->row() == plyr->row() && robot->col() == plyr->col()) {
+				plyr->setDead();
+			}
+		}
+	);
 	// Return true if the player is still alive, false otherwise.
 	return !this->m_player->isDead();
 }

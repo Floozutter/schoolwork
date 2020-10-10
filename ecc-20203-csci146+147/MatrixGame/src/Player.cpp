@@ -3,7 +3,7 @@
 #include "Arena.h"
 #include "Player.h"
 
-Player::Player(Arena* ap, int r, int c) {
+Player::Player(Arena * ap, int r, int c) {
 	if (ap == nullptr) {
 		std::cout << "***** The player must be in some Arena!" << std::endl;
 		std::exit(1);
@@ -21,21 +21,15 @@ Player::Player(Arena* ap, int r, int c) {
 }
 
 int Player::row() const {
-	// TODO: TRIVIAL: Return what row the player is at.
-	// Delete the following line and replace it with the correct code.
-	return 1;  // This implementation compiles, but is incorrect.
+	return this->m_row;
 }
 
 int Player::col() const {
-	// TODO: TRIVIAL: Return what column the player is at.
-	// Delete the following line and replace it with the correct code.
-	return 1;  // This implementation compiles, but is incorrect.
+	return this->m_col;
 }
 
 int Player::age() const {
-	// TODO: TRIVIAL: Return the player's age.
-	// Delete the following line and replace it with the correct code.
-	return 0;  // This implementation compiles, but is incorrect.
+	return this->m_age;
 }
 
 std::string Player::takeComputerChosenTurn() {
@@ -63,17 +57,13 @@ void Player::stand() {
 
 void Player::move(int dir) {
 	++this->m_age;
-	switch (dir) {
-		// TODO: Implement the movements.
-		case UP:
-			break;
-		case DOWN:
-			break;
-		case LEFT:
-			break;
-		case RIGHT:
-			break;
-	}
+	// Update position.
+	this->m_row += DELTA_ROW[dir];
+	this->m_col += DELTA_COL[dir];
+	// Stay within arena bounds.
+	using std::min, std::max;
+	this->m_row = min(max(this->m_row, 1), this->m_arena->rows());
+	this->m_col = min(max(this->m_col, 1), this->m_arena->cols());
 }
 
 bool Player::shoot(int dir) {
@@ -82,15 +72,24 @@ bool Player::shoot(int dir) {
 		// Miss with 1/3 probability.
 		return false;
 	} else {
-		// TODO:  Damage the nearest robot in direction dir, returning
-		// true if a robot is hit and damaged, false if not hit.
-		return false;  // This implementation compiles, but is incorrect.
+		// Damage the nearest robot in direction dir, returning true if a
+		// robot is hit and damaged, false if not hit.
+		int r = this->row();
+		int c = this->col();
+		for (size_t i = 0; i < MAX_SHOTLEN; ++i) {
+			r += DELTA_ROW[dir];
+			c += DELTA_COL[dir];
+			if (this->m_arena->nRobotsAt(r, c) > 0) {
+				this->m_arena->damageRobotAt(r, c);
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
 bool Player::isDead() const {
-	// TODO: TRIVIAL: Return whether the player is dead.
-	return false;  // This implementation compiles, but is incorrect.
+	return this->m_dead;
 }
 
 void Player::setDead() {

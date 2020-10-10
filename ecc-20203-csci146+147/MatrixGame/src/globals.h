@@ -9,6 +9,8 @@ constexpr int MAX_SHOTLEN = 5;   // Max number of steps you can shoot.
 enum {
 	UP, DOWN, LEFT, RIGHT
 };
+int const DELTA_ROW[] = {-1, 1, 0, 0};
+int const DELTA_COL[] = {0, 0, -1, 1};
 
 // Utility functions.
 int decodeDirection(char dir);

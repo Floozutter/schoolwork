@@ -14,7 +14,7 @@ class Arena {
 		// Accessors.
 		int rows() const;
 		int cols() const;
-		Player* player() const;
+		Player * player() const;
 		int robotCount() const;
 		int nRobotsAt(int r, int c) const;
 		// Mutators.
@@ -27,8 +27,8 @@ class Arena {
 	private:
 		int m_rows;
 		int m_cols;
-		Player* m_player;
-		Robot* m_robots[MAX_ROBOTS];
+		Player * m_player;
+		Robot * m_robots[MAX_ROBOTS];
 		int m_nRobots;
 };
 

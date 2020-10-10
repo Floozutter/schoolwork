@@ -15,13 +15,13 @@ Game::Game(int rows, int cols, int nRobots) {
 	// Create arena.
 	this->m_arena = new Arena(rows, cols);
 	// Add player.
-	int rPlayer = std::rand() % rows + 1;
-	int cPlayer = std::rand() % cols + 1;
+	int const rPlayer = std::rand() % rows + 1;
+	int const cPlayer = std::rand() % cols + 1;
 	this->m_arena->addPlayer(rPlayer, cPlayer);
 	// Populate with robots.
 	while (nRobots > 0) {
-		int r = std::rand() % rows + 1;
-		int c = std::rand() % cols + 1;
+		int const r = std::rand() % rows + 1;
+		int const c = std::rand() % cols + 1;
 		  // Don't put a robot where the player is
 		if (r == rPlayer && c == cPlayer) {
 			continue;
@@ -36,7 +36,7 @@ Game::~Game() {
 }
 
 void Game::play() {
-	Player* p = this->m_arena->player();
+	Player * const p = this->m_arena->player();
 	if (p == nullptr) {
 		this->m_arena->display("");
 		return;

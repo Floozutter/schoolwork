@@ -36,12 +36,13 @@ void clearScreen() {
 #include <cstring>
 #include <iostream>
 void clearScreen() {
-	static const char* term = std::getenv("TERM");
+	static const char * term = std::getenv("TERM");
 	if (term == nullptr || std::strcmp(term, "dumb") == 0) {
 		std::cout << std::endl;
 	} else {
-		static const char* ESC_SEQ = "\x1B[";  // ANSI Terminal esc seq: ESC [
-		std::cout << ESC_SEQ << "2J" << ESC_SEQ << "H" << std::flush;
+		// ANSI Terminal Control Sequence Introducer: ESC [
+		static const char * CSI = "\x1B["; 
+		std::cout << CSI << "2J" << CSI << "H" << std::flush;
 	}
 }
 #endif

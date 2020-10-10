@@ -9,7 +9,7 @@ class Game {
 		~Game();
 		void play();
 	private:
-		Arena* m_arena;
+		Arena * m_arena;
 };
 
 #endif
