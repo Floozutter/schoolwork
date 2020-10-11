@@ -22,7 +22,7 @@ def powerset(s: FS[int]) -> FS[FS[int]]:
 	)))
 
 def disjoint_pairs(ss: FS[FS[int]]) -> Tuple[Tuple[FS[int], FS[int]], ...]:
-	pairs = product(ss, repeat = 2)
+	pairs = product(ss, ss)
 	return tuple(filter(
 		lambda p: p[0].isdisjoint(p[1]),
 		pairs
