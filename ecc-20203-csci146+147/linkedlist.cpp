@@ -31,7 +31,7 @@ class LinkedList {
 		}
 		
 		// Copy assignment operator.
-		LinkedList const & operator=(const LinkedList& other) {
+		LinkedList const & operator=(LinkedList const & other) {
 			LinkedList copy{other};
 			this->swap(copy);
 			return *this;
@@ -82,7 +82,7 @@ class LinkedList {
 		
 		// Reverses the LinkedList.
 		void reverseList() {
-			auto reverse = [this](auto && self, Node * ptr) -> Node * {
+			auto const reverse = [this](auto && self, Node * ptr) -> Node * {
 				if (!ptr) {
 					return nullptr;
 				} else if (!ptr->next) {
@@ -130,7 +130,9 @@ class LinkedList {
 		
 		// Prints the LinkedList in reverse order.
 		void printReverse() const {
-			auto printNextFirst = [](auto && self, Node const * ptr) -> void {
+			auto const printNextFirst = [](
+				auto && self, Node const * ptr
+			) -> void {
 				if (ptr) {
 					self(self, ptr->next);
 					std::cout << ptr->value << " ";
