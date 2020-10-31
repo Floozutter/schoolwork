@@ -3,6 +3,27 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+#include <limits>
+#include <stack>
+#include <map>
+#include <set>
+
+std::map<std::string, std::string> const OPENER_TO_CLOSER{
+	{"{", "}"},
+	{"(", ")"},
+	{"[", "]"},
+	{"'", "'"},
+	{"\"", "\""},
+	{"/*", "*/"}
+};
+std::set<std::string> const CLOSERS{
+	"}",
+	")",
+	"]",
+	"'",
+	"\"",
+	"*/"
+};
 
 void printFile(std::istream & is);
 bool balanceFile(std::istream & is);
@@ -24,7 +45,7 @@ int main(int argc, char * argv[]) {
 	// Reset input file stream.
 	ifile.clear();
 	ifile.seekg(0);
-	// Check the file for balance. Print when imbalances are encounters.
+	// Check the file for balance.
 	if (balanceFile(ifile)) {
 		std::cout << "Balanced!" << std::endl;
 	} else {
@@ -57,4 +78,78 @@ void printFile(std::istream & is) {
 	}
 }
 
-bool balanceFile(std::istream & is) { return true; }
+bool balanceFile(std::istream & is) {
+	// Alias for convenience.
+	std::map<std::string, std::string> const & O2C = OPENER_TO_CLOSER;
+	// Record to store history.
+	struct Token {
+		std::string str;
+		unsigned int line_n;
+	};
+	// Helper functions for printing.
+	auto const printMatch = [](Token opener, Token closer){
+		std::cout << "Matched pair " << opener.str << " and " << closer.str;
+		std::cout << " at lines " << opener.line_n << ", " << closer.line_n;
+		std::cout << "." << std::endl;
+	};
+	auto const printMiss = [](Token t){
+		std::cout << "Unmatched " << t.str << " at line "<< t.line_n;
+		std::cout << "." << std::endl;
+	};
+	// Start algorithm.
+	std::stack<Token> ostack;
+	auto const quoteZone = [&o = ostack]{
+		return !o.empty() && (o.top().str == "'" || o.top().str == "\"");
+	};
+	unsigned int line_number{1};
+	for (char c; is.get(c);) {
+		// Get token.
+		int const d{is.peek()};
+		std::string s(1, c);
+		if (c == '\n') {
+			// Newline.
+			++line_number;
+			if (quoteZone()) {
+				printMiss(ostack.top());
+				return false;
+			}
+			continue;
+		} else if (!quoteZone() && c == '/' && d == '/') {
+			// Inline comment.
+			is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			++line_number;
+			continue;
+		} else if (quoteZone() && c == '\\') {
+			// Escape character.
+			is.ignore();
+			continue;
+		} else if (c == '/' && d == '*' || c == '*' && d == '/') {
+			// Block comment token.
+			s.push_back(d);
+			is.ignore();
+		}
+		// Handle token.
+		if (!ostack.empty() && O2C.at(ostack.top().str) == s) {
+			// The token can resolve a match. Print and resolve.
+			printMatch(ostack.top(), Token{s, line_number});
+			ostack.pop();
+		} else if (quoteZone()) {
+			// The token is within quotes. Discard the token.
+			continue;
+		} else if (O2C.find(s) != O2C.end()) {
+			// The token is an opener. Push the token onto the stack.
+			ostack.push(Token{s, line_number});
+		} else if (CLOSERS.find(s) != CLOSERS.end()) {
+			// The token is an unmatched closer. Report the imbalance.
+			printMiss(Token{s, line_number});
+			return false;
+		}
+	}
+	// Guarantee no hanging openers.
+	if (ostack.empty()) {
+		return true;
+	} else {
+		printMiss(ostack.top());
+		return false;
+	}
+}
