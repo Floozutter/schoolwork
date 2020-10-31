@@ -122,6 +122,9 @@ bool balanceFile(std::istream & is) {
 		} else if (quoteZone() && c == '\\') {
 			// Escape character.
 			is.ignore();
+			if (d == '\n') {
+				++line_number;
+			}
 			continue;
 		} else if (c == '/' && d == '*' || c == '*' && d == '/') {
 			// Block comment token.
