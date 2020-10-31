@@ -131,20 +131,21 @@ bool balanceFile(std::istream & is) {
 			s.push_back(d);
 			is.ignore();
 		}
+		Token const token{s, line_number};
 		// Handle token.
-		if (!ostack.empty() && O2C.at(ostack.top().str) == s) {
+		if (!ostack.empty() && O2C.at(ostack.top().str) == token.str) {
 			// The token can resolve a match. Print and resolve.
-			printMatch(ostack.top(), Token{s, line_number});
+			printMatch(ostack.top(), token);
 			ostack.pop();
 		} else if (quoteZone()) {
 			// The token is within quotes. Discard the token.
 			continue;
-		} else if (O2C.find(s) != O2C.end()) {
+		} else if (O2C.find(token.str) != O2C.end()) {
 			// The token is an opener. Push the token onto the stack.
-			ostack.push(Token{s, line_number});
-		} else if (CLOSERS.find(s) != CLOSERS.end()) {
+			ostack.push(token);
+		} else if (CLOSERS.find(token.str) != CLOSERS.end()) {
 			// The token is an unmatched closer. Report the imbalance.
-			printMiss(Token{s, line_number});
+			printMiss(token);
 			return false;
 		}
 	}
