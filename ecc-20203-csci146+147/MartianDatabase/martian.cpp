@@ -97,7 +97,8 @@ void MartianDatabase::printMartians(Criterion crit) const {
 		arr,
 		arr + this->m_size,
 		[](Martian const * const & m){
-			std::cout << m->fname << " " << m->lname << m->ssn << std::endl;
+			std::cout << m->fname << " " << m->lname << " ";
+			std::cout << m->ssn << std::endl;
 		}
 	);
 }
