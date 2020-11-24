@@ -54,7 +54,7 @@ bool MartianDatabase::deleteMartian(std::string ssn) {
 	auto const it{std::find_if(
 		this->m_unsorted,
 		this->m_unsorted + this->m_size,
-		[ssn](Martian const * const & m){ return m->ssn == ssn; }
+		[&ssn](Martian const * const & m){ return m->ssn == ssn; }
 	)};
 	if (it == this->m_unsorted + this->m_size) {
 		return false;
