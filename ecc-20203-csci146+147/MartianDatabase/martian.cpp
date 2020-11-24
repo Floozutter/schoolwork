@@ -87,10 +87,10 @@ void MartianDatabase::printMartians(Criterion crit) const {
 		Criterion crit
 	) -> Martian * const (&)[MAX_MARTIANS] {
 		switch (crit) {
-			case Criterion::first: return this->m_fname;
-			case Criterion::last:  return this->m_lname;
-			case Criterion::ssn:   return this->m_ssn;
-			default:               return this->m_unsorted;
+		case Criterion::first: return this->m_fname;
+		case Criterion::last:  return this->m_lname;
+		case Criterion::ssn:   return this->m_ssn;
+		default:               return this->m_unsorted;
 		}
 	}(crit);
 	std::for_each(
