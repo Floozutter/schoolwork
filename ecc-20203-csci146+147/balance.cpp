@@ -101,6 +101,9 @@ bool balanceFile(std::istream & is) {
 	auto const quoteZone = [&o = ostack]{
 		return !o.empty() && (o.top().str == "'" || o.top().str == "\"");
 	};
+	auto const blockZone = [&o = ostack]{
+		return !o.empty() && (o.top().str == "/*");
+	};
 	unsigned int line_number{1};
 	for (char c; is.get(c);) {
 		// Get token.
@@ -114,7 +117,7 @@ bool balanceFile(std::istream & is) {
 				return false;
 			}
 			continue;
-		} else if (!quoteZone() && c == '/' && d == '/') {
+		} else if (!quoteZone() && !blockZone() && c == '/' && d == '/') {
 			// Inline comment.
 			is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			++line_number;
@@ -139,6 +142,9 @@ bool balanceFile(std::istream & is) {
 			ostack.pop();
 		} else if (quoteZone()) {
 			// The token is within quotes. Discard the token.
+			continue;
+		} else if (blockZone()) {
+			// The token is within a block comment. Discard the token.
 			continue;
 		} else if (O2C.find(token.str) != O2C.end()) {
 			// The token is an opener. Push the token onto the stack.
