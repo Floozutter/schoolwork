@@ -31,9 +31,8 @@ class LinkedList {
 		}
 		
 		// Copy assignment operator.
-		LinkedList const & operator=(LinkedList const & other) {
-			LinkedList copy{other};
-			this->swap(copy);
+		LinkedList const & operator=(LinkedList other) {
+			this->swap(other);
 			return *this;
 		}
 
