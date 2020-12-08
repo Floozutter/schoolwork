@@ -83,7 +83,7 @@ void Tree<T>::add(T value) {
 			}
 			return root;
 		} else {
-			return new Tree::Node{value, 1, nullptr, nullptr};
+			return new Node{value, 1, nullptr, nullptr};
 		}
 	};
 	this->root = addToTree(addToTree, this->root, value);
@@ -120,7 +120,7 @@ std::ostream & operator<<(std::ostream & out, Tree<T> const & tree) {
 	) -> void {
 		if (root) {
 			self(self, root->left);
-			out << "(" << root->value << ", " << root->count << ") ";
+			out << "[" << root->value << ", " << root->count << "] ";
 			self(self, root->right);
 		}
 	};
@@ -158,7 +158,16 @@ int main() {
 	std::cout << "a: " << a;
 	std::cout << "b: "  << b;
 	WordTree c{b};
-	std::cout << "c (copy constructed from a): "  << c;
+	std::cout << "c (copy constructed from b): "  << c;
 	c = a;
-	std::cout << "c (copy assigned to from b): "  << c;
+	std::cout << "c (copy assigned to from a): "  << c;
+	// Test Tree<char>.
+	Tree<char> d;
+	d.add('u');
+	d.add('w');
+	d.add('u');
+	d.add('o');
+	d.add('w');
+	d.add('o');
+	std::cout << "d: "  << d;
 }
