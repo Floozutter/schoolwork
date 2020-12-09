@@ -11,7 +11,7 @@ public:
 	Tree(Tree const & other);
 	template<typename U> friend void swap(Tree<U> & a, Tree<U> & b);
 	Tree const & operator=(Tree other);
-	void add(T value);
+	void add(T const & value);
 	int distinctValues() const;
 	int totalValues() const;
 	template<typename U> friend std::ostream & operator<<(
@@ -47,10 +47,12 @@ template<typename T>
 Tree<T>::Tree(Tree const & other) {
 	auto const copyTree = [](auto && self, Node const * root) -> Node * {
 		if (root) {
-			Node * newroot{new Node{*root}};
-			newroot->left = self(self, root->left);
-			newroot->right = self(self, root->right);
-			return newroot;
+			return new Node{
+				root->value,
+				root->count,
+				self(self, root->left),
+				self(self, root->right)
+			};
 		} else {
 			return nullptr;
 		}
@@ -71,13 +73,13 @@ Tree<T> const & Tree<T>::operator=(Tree other) {
 }
 
 template <typename T>
-void Tree<T>::add(T value) {
-	auto const addToTree = [](auto && self, Node * root, T value) -> Node * {
+void Tree<T>::add(T const & value) {
+	auto const addToTree = [&value](auto && self, Node * root) -> Node * {
 		if (root) {
 			if (value < root->value) {
-				root->left = self(self, root->left, value);
+				root->left = self(self, root->left);
 			} else if (value > root->value) {
-				root->right = self(self, root->right, value);
+				root->right = self(self, root->right);
 			} else {
 				++root->count;
 			}
@@ -86,7 +88,7 @@ void Tree<T>::add(T value) {
 			return new Node{value, 1, nullptr, nullptr};
 		}
 	};
-	this->root = addToTree(addToTree, this->root, value);
+	this->root = addToTree(addToTree, this->root);
 }
 
 template <typename T>
@@ -101,12 +103,10 @@ int Tree<T>::countValues(Node const * root, bool distinct) {
 		return 0;
 	}
 }
-
 template <typename T>
 int Tree<T>::distinctValues() const {
 	return Tree::countValues(this->root, true);
 }
-
 template <typename T>
 int Tree<T>::totalValues() const {
 	return Tree::countValues(this->root, false);
