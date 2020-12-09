@@ -5,7 +5,7 @@
 
 template <typename T>
 class Tree {
-public:          
+public:
 	Tree();
 	~Tree();
 	Tree(Tree const & other);
