@@ -1,2 +1,2 @@
 # coursework
-Consistently conducting classroom chores challenges coding concept comprehension continously
+learning, hopefully
