@@ -2,12 +2,15 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1.25in]{geometry}
 \usepackage[fleqn]{amsmath}
+\usepackage{enumitem}
 \usepackage{textcomp}
 \usepackage{gensymb}
 \usepackage{amsfonts}
-\usepackage{enumitem}
 %\usepackage{tikz}  % figures
 %\usepackage{subfiles}  % subfiles
+
+%% formatting
+%\pagenumbering{gobble}  % single-page document
 
 %% title
 \newcommand{\HOMEWORKNUM}{?}
@@ -17,17 +20,22 @@
 \author{\NAME}
 \date{\DATE}
 
-%% formatting
-%\pagenumbering{gobble}  % single-page document
-
-
 % document
 \begin{document}
 \maketitle
 
-\section*{1.}
+\paragraph{1.}
 \textit{owo?} \\[\baselineskip]
 uwu.
 \begin{equation*} \pi \approx \boxed{e} \end{equation*}
+
+\paragraph{2.}
+\textit{owowo?}
+\begin{enumerate}[label=\textbf{\alph*.}]
+    \item \textit{uwuwu?} \\
+    uwuwu. 
+    \item \textit{uuuuu?} \\
+    uuuuu.
+\end{enumerate}
 
 \end{document}
