@@ -31,13 +31,84 @@
 \paragraph{1.}
 \textit{Suppose $A$ and $B$ are finite sets.}
 \begin{enumerate}[label=\textbf{\alph*.}]
-    \item \textit{Compare the two quantities $|\ps(A \times B)|$ and $|\ps(A)||\ps(B)|$.
-    Under what circumstances is the ratio $\frac{|\ps(A \times B)|}{|\ps(A)||\ps(B)|}$
-    equal to $1$, less than $1$, or greater than $1$?
-    } \qa
-    uwuwu.
-    \item \textit{uuuuu?} \qa
-    uuuuu.
+    \item \textit{Compare the two quantities $|\ps(A \times B)|$ and $|\ps(A)| |\ps(B)|$.
+    Under what circumstances is the ratio $\frac{|\ps(A \times B)|}{|\ps(A)| |\ps(B)|}$
+    equal to $1$, less than $1$, or greater than $1$?} \qa
+    Given that $|X \times Y| = |X| \cdot |Y|$ and $|\ps(X)| = 2^{|X|}$,
+    \begin{gather*}
+        |\ps(A \times B)| = 2^{|A \times B|} = 2^{|A| |B|}, \\
+        |\ps(A)| |\ps(B)| = 2^{|A|} 2^{|B|} = 2^{|A| + |B|}.
+    \end{gather*}
+    Thus, the ratio can be simplified to
+    \begin{equation*}
+        \frac{|\ps(A \times B)|}{|\ps(A)| |\ps(B)|} = \frac{2^{|A| |B|}}{2^{|A| + |B|}}.
+    \end{equation*}
+    The numerator and denominator of this simplified ratio are both exponentiations that share the
+    same base $2$. Consequently, the ratio will be
+    \begin{itemize}
+        \item equal to $1$ when $|A| |B| = |A| + |B|$,
+        \item less than $1$ when $|A| |B| < |A| + |B|$, and
+        \item greater than $1$ when $|A| |B| > |A| + |B|$.
+    \end{itemize}
+    \item \textit{Does $(A - B) \cap (B - A) = \{\}$?} \qa
+    \boxed{\text{Yes}}, $(A - B) \cap (B - A)
+    = (A \cap \overline{B}) \cap (\overline{A} \cap B)
+    = A \cap \overline{A} \cap B \cap \overline{B}
+    = \{\}.$
 \end{enumerate}
+
+\paragraph{2.}
+\textit{Are these statements true or false and why?}
+\begin{enumerate}[label=\textbf{\alph*.}]
+    \item $\{\} = \{\{\}\}$? \boxed{\text{False}}, $|\{\}| = 0$ but $|\{\{\}\}| = 1$.
+    \item $\{\} = \{0\}$? \boxed{\text{False}}, $|\{\}| = 0$ but $|\{0\}| = 1$.
+    \item $|\{\{\}\}| = 0$? \boxed{\text{False}}, $\{\} \in \{\{\}\}$.
+    \item $|\ps(\{\})| = 0$? \boxed{\text{False}}, $\{\} \in \ps(\{\})$.
+    \item $\{\} \in \{\}$? \boxed{\text{False}}, the empty set contains no elements.
+    \item $\{\} = \{x \in \mathcal{N}: x <= 0 \text{ and } x > 0\}$? \boxed{\text{True}}, the
+    conditions for each element of the set $x$ are negations of each other.
+\end{enumerate}
+
+\paragraph{3.}
+% \textit{?} \qa
+The intervals $[1, 20], [21, 40], [41, 60]$ fully cover $[1, 60]$ with no overlap. Consequently,
+any choice of $4$ distinct integers from $[1, 60]$ will result in at least one of these intervals
+containing more than one chosen integer, due to the pigeonhole principle. The maximum difference
+of any two numbers both in any one of these intervals is $19$.
+
+\paragraph{4.}
+% \textit{?} \qa
+\begin{enumerate}[label=\textbf{\alph*.}]
+    \item % \textit{?} \qa
+    Listing the elements of $C$ gives
+    \begin{align*}
+        C = \{ & \\
+        & \{3, 4\}, \\
+        & \{2\}, \\
+        & \{1, 4\}, \\
+        & \{2, 4, 5\}, \\
+        & \{2, 5\}, \\
+        & \{3\}, \\
+        & \{2, 4\}, \\
+        & \{1\}, \\
+        & \{1, 5\}, \\
+        & \{1, 4, 5\}, \\
+        & \{3, 5\}, \\
+        & \{3, 4, 5\} \\
+        \}.
+    \end{align*}
+    Thus, by counting, \boxed{|C| = 12}.
+    \item % \textit{?}
+    \begin{enumerate}[label=\textbf{\roman*.}]
+        \item $\boxed{(1, 4, 9)} \in (A \times B \times C)$.
+        \item $\boxed{(4, 1, 9)} \in (B \times A \times C)$.
+    \end{enumerate}
+\end{enumerate}
+
+\paragraph{5.}
+% \textit{?} \qa
+\boxed{\text{True}}, if $A \times C = B \times C$ then $a \in B$ for every $a$ in
+$A \times C = \{(a, c) | a \in A \text{ and } c \in C\}$, and vice versa. Thus,
+$A \subseteq B$ and $B \subseteq A$, showing that $A = B$.
 
 \end{document}
